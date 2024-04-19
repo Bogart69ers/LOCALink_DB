@@ -32,7 +32,7 @@
         <nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
             <div class="container">
                 <div class="navbar-brand">
-                    <span class="navbar-caption-wrap"><a class="navbar-caption text-black display-4" href="https://mobiri.se">LOCALink</a></span>
+                    <span class="navbar-caption-wrap"><a class="navbar-caption text-black display-4" href="/Home/Index">LOCALink</a></span>
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <div class="hamburger">
@@ -44,7 +44,7 @@
                 </button>
                 @if (User.Identity.IsAuthenticated)
                 {
-                    if (User.IsInRole("User"))
+                    if (User.IsInRole("Admin"))
                     {
                         //Usba lang ari og unsay imong ganahan nga ipa kita og ang User nga account mo login
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -57,12 +57,6 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link link text-black display-4" href="#team-1-uadY7as3c7">Team</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link link text-black display-4" href="#team-1-uadY7as3c7">Book</a>
-                                </li>
-                                <li>
-                                    <i class="fa fa-lock" aria-hidden="true"></i>
                                 </li>
                             </ul>
                             <div class="navbar-buttons mbr-section-btn">
@@ -104,6 +98,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link link text-black display-4" href="#team-1-uadY7as3c7">Team</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link link text-black display-4" href="~/Shared/_BookingLayout">Book</a>
+                                </li>
                             </ul>
                             <div class="navbar-buttons mbr-section-btn">
                                 <a class="btn btn-primary display-4" href="~/Home/Logout">Sign Out</a>
@@ -114,23 +111,23 @@
                 else
                 {
                     //Usba lang ari og unsay imong ganahan nga ipa kita og default ang login or walay log in
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
-                        <li class="nav-item">
-                            <a class="nav-link link text-black display-4" href="#about-us-15-uadY7asi4M">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link link text-black display-4" href="#pricing-cards-1-uadY7asd5y" aria-expanded="false">Services</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link link text-black display-4" href="#team-1-uadY7as3c7">Team</a>
-                        </li>
-                    </ul>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+                            <li class="nav-item">
+                                <a class="nav-link link text-black display-4" href="#about-us-15-uadY7asi4M">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link link text-black display-4" href="#pricing-cards-1-uadY7asd5y" aria-expanded="false">Services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link link text-black display-4" href="#team-1-uadY7as3c7">Team</a>
+                            </li>
+                        </ul>
 
-                    <div class="navbar-buttons mbr-section-btn">
-                        <a class="btn btn-primary display-4" href="~/Home/Login">Sign in</a>
-                    </div>                   
-                </div>
+                        <div class="navbar-buttons mbr-section-btn">
+                            <a class="btn btn-primary display-4" href="~/Home/Login">Sign in</a>
+                        </div>
+                    </div>
                 }
             </div>
         </nav>
