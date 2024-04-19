@@ -115,7 +115,7 @@ namespace LocaLINK.Controllers
         }
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult SignUp(User_Account ua, String ConfirmPass)
+        public ActionResult SignUp(User_Account ua, string ConfirmPass)
         {
             if (!ua.password.Equals(ConfirmPass))
             {
