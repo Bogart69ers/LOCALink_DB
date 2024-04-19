@@ -5,34 +5,86 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="login/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="assets/login/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/assets/login/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/assets/login/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/assets/login/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/assets/login/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/assets/login/util.css">
+    <link rel="stylesheet" type="text/css" href="/assets/login/main.css">
+    <!--===============================================================================================-->
+</head>
 @using (Html.BeginForm())
 {
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
+    <body>
 
-    <div class="form-group">
-        Please enter OTP
-        <div class="col-md-10">
-            @TempData["error"]
-            <input type="hidden" name="username" value="@TempData["username"]" />
-            <input type="number" class="form-control" name="code" value="" required />
+        <div class="limiter">
+            <div class="container-login100">
+                <div class="wrap-login100">
+                    <div class="login100-pic js-tilt" data-tilt>
+                        <img src="/assets/login/img-01.png" alt="IMG">
+                    </div>
+                    <div class="login100-form">
+                        <br />
+                        <br />
+                        <br />
+                        <form class="login100-form validate-form">
+                            <span class="login100-form-title">
+                                Enter Verification Code
+                            </span>
+                            @TempData["error"]
+                            <input type="hidden" name="username" value="@TempData["username"]" />
+                            <div class="wrap-input100 validate-input">
+                                <input class="input100" type="number" name="code" value="" placeholder="6-digit" required>
+                                <span class="focus-input100"></span>
+                                <span class="symbol-input100">
+                                    <i class="fa fa-lock" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <div class="container-login100-form-btn">
+                                <input type="submit" class="login100-form-btn" value="Verify" />
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-10">
-            <input type="submit" class="btn btn-success" value="Verify" />
-        </div>
-    </div>
 
 
+
+
+
+        <!--===============================================================================================-->
+        <script src="/assets/login/jquery-3.2.1.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="/assets/login/popper.js"></script>
+        <script src="/assets/login/bootstrap.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="/assets/login/select2.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="/assets/login/tilt.jquery.min.js"></script>
+        <script>
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+        </script>
+
+    </body>
 }
-<div class="form-group">
-    <div class="col-md-10">
-        <a href="~/Home/SignIn">Sign In</a>
-    </div>
-</div>
+</html>
 

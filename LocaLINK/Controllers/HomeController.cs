@@ -83,7 +83,7 @@ namespace LocaLINK.Controllers
         }
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult Verify(String code, String username)
+        public ActionResult Verify(String code, string username)
         {
             if (String.IsNullOrEmpty(username))
                 return RedirectToAction("Login");
