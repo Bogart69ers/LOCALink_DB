@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Verify";
+    ViewBag.HeaderTitle = "Verify Account";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        Please enter OTP
+        <div class="col-md-10">
+            @TempData["error"]
+            <input type="hidden" name="username" value="@TempData["username"]" />
+            <input type="number" class="form-control" name="code" value="" required />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="submit" class="btn btn-success" value="Verify" />
+        </div>
+    </div>
+
+
+}
+<div class="form-group">
+    <div class="col-md-10">
+        <a href="~/Home/SignIn">Sign In</a>
+    </div>
+</div>
+

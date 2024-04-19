@@ -1,0 +1,449 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8204CB82-B6E8-4D68-85B2-CDC302CAAF74}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LocaLINK</RootNamespace>
+    <AssemblyName>LocaLINK</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.0.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.0.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.0.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.0.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.0.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.0.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="assets\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="assets\bootstrap\css\bootstrap.min.css" />
+    <Content Include="assets\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="assets\dropdown\css\style.css" />
+    <Content Include="assets\dropdown\js\navbar-dropdown.js" />
+    <Content Include="assets\formoid\formoid.min.js" />
+    <Content Include="assets\imageloaded\imagesloaded.pkgd.min.js" />
+    <Content Include="assets\images\327902782_5881112508670425_939493048084412230_n.jpg" />
+    <Content Include="assets\images\427711099_1287159432686634_3947921874142247345_n.jpg" />
+    <Content Include="assets\images\430007298_1800677873731182_1481824453091159984_n.png" />
+    <Content Include="assets\images\431791036_1505998206648976_5915917117067055049_n.jpg" />
+    <Content Include="assets\images\background1.jpg" />
+    <Content Include="assets\images\photo-1450101499163-c8848c66ca85.jpeg" />
+    <Content Include="assets\images\photo-1489980721706-f487dab89c24.jpeg" />
+    <Content Include="assets\images\photo-1503551723145-6c040742065b-v2.jpeg" />
+    <Content Include="assets\images\photo-1504384308090-c894fdcc538d.jpeg" />
+    <Content Include="assets\images\photo-1504805572947-34fad45aed93.jpeg" />
+    <Content Include="assets\images\photo-1516321497487-e288fb19713f.jpeg" />
+    <Content Include="assets\images\photo-1517048676732-d65bc937f952.jpeg" />
+    <Content Include="assets\images\photo-1517245386807-bb43f82c33c4.jpeg" />
+    <Content Include="assets\images\photo-1518135714426-c18f5ffb6f4d.jpeg" />
+    <Content Include="assets\images\photo-1519389950473-47ba0277781c.jpeg" />
+    <Content Include="assets\images\photo-1521791136064-7986c2920216.jpeg" />
+    <Content Include="assets\images\photo-1529612700005-e35377bf1415.jpeg" />
+    <Content Include="assets\images\photo-1530882548122-0596ee66cdfd.jpeg" />
+    <Content Include="assets\images\photo-1579041925709-798d7d0fed1d.jpeg" />
+    <Content Include="assets\images\photo-1589156191108-c762ff4b96ab.jpeg" />
+    <Content Include="assets\images\photo-1589571894960-20bbe2828d0a.jpeg" />
+    <Content Include="assets\images\photo-1591714098656-94a8a95dcf50.jpeg" />
+    <Content Include="assets\images\photo-1605152276897-4f618f831968.jpeg" />
+    <Content Include="assets\images\photo-1613963931023-5dc59437c8a6.jpeg" />
+    <Content Include="assets\images\photo-1617080090911-91409e3496ad.jpeg" />
+    <Content Include="assets\images\photo-1636363407089-16874826db3b.jpeg" />
+    <Content Include="assets\images\photo-1646825461394-ebd1800141d1.jpeg" />
+    <Content Include="assets\images\photo-1651044450619-5ce74d316987.jpeg" />
+    <Content Include="assets\images\photo-1681075401974-907cc62a4373.jpeg" />
+    <Content Include="assets\images\photo-1694026307715-0d3709e69adf.jpeg" />
+    <Content Include="assets\login\animate.css" />
+    <Content Include="assets\login\bootstrap-grid.css" />
+    <Content Include="assets\login\bootstrap-grid.min.css" />
+    <Content Include="assets\login\bootstrap-reboot.css" />
+    <Content Include="assets\login\bootstrap-reboot.min.css" />
+    <Content Include="assets\login\bootstrap.css" />
+    <Content Include="assets\login\bootstrap.min.css" />
+    <Content Include="assets\login\favicon.ico" />
+    <Content Include="assets\login\font-awesome.css" />
+    <Content Include="assets\login\font-awesome.min.css" />
+    <Content Include="assets\login\fontawesome-webfont.svg" />
+    <Content Include="assets\login\hamburgers.css" />
+    <Content Include="assets\login\hamburgers.min.css" />
+    <Content Include="assets\login\img-01.png" />
+    <Content Include="assets\login\jquery-3.2.1.min.js" />
+    <Content Include="assets\login\main.css" />
+    <Content Include="assets\login\main.js" />
+    <Content Include="assets\login\OFL.txt" />
+    <Content Include="assets\login\select2.css" />
+    <Content Include="assets\login\select2.js" />
+    <Content Include="assets\login\select2.min.css" />
+    <Content Include="assets\login\select2.min.js" />
+    <Content Include="assets\login\tilt.jquery.min.js" />
+    <Content Include="assets\login\util.css" />
+    <Content Include="assets\masonry\masonry.pkgd.min.js" />
+    <Content Include="assets\mobirise\css\mbr-additional.css" />
+    <Content Include="assets\parallax\jarallax.css" />
+    <Content Include="assets\parallax\jarallax.js" />
+    <Content Include="assets\scrollgallery\scroll-gallery.js" />
+    <Content Include="assets\smoothscroll\smooth-scroll.js" />
+    <Content Include="assets\socicon\css\styles.css" />
+    <Content Include="assets\socicon\fonts\socicon.svg" />
+    <Content Include="assets\theme\css\style.css" />
+    <Content Include="assets\theme\js\script.js" />
+    <Content Include="assets\vimeoplayer\player.js" />
+    <Content Include="assets\web\assets\mobirise-icons2\mobirise2.css" />
+    <Content Include="assets\web\assets\mobirise-icons2\mobirise2.svg" />
+    <Content Include="assets\ytplayer\index.js" />
+    <Content Include="Global.asax" />
+    <Content Include="LocaLINK.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LocaLINK.edmx</DependentUpon>
+      <LastGenOutput>LocaLINK.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="LocaLINK.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LocaLINK.edmx</DependentUpon>
+      <LastGenOutput>LocaLINK.cs</LastGenOutput>
+    </Content>
+    <Content Include="scripts\ai.0.22.9-build00167.js" />
+    <Content Include="scripts\ai.0.22.9-build00167.min.js" />
+    <None Include="scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="scripts\jquery-1.10.2.js" />
+    <Content Include="scripts\jquery-1.10.2.min.js" />
+    <None Include="scripts\jquery.validate-vsdoc.js" />
+    <Content Include="scripts\jquery.validate.js" />
+    <Content Include="scripts\jquery.validate.min.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Booking.cs">
+      <DependentUpon>LocaLINK.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Contracts\IBaseController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="LocaLINK.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocaLINK.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LocaLINK.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocaLINK.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LocaLINK.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocaLINK.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Response.cs" />
+    <Compile Include="Models\UserLogged.cs" />
+    <Compile Include="Utils\MyRole.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\BaseRepository.cs" />
+    <Compile Include="Repository\UserManager.cs" />
+    <Compile Include="Service_Category.cs">
+      <DependentUpon>LocaLINK.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Service_Provider.cs">
+      <DependentUpon>LocaLINK.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>LocaLINK.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>LocaLINK.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Status.cs">
+      <DependentUpon>LocaLINK.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>LocaLINK.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User_Account.cs">
+      <DependentUpon>LocaLINK.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User_Info.cs">
+      <DependentUpon>LocaLINK.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User_Role.cs">
+      <DependentUpon>LocaLINK.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Utilities.cs" />
+    <Compile Include="vw_accRole.cs">
+      <DependentUpon>LocaLINK.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EntityDeploy Include="LocaLINK.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LocaLINK.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="LocaLINK.edmx.diagram">
+      <DependentUpon>LocaLINK.edmx</DependentUpon>
+    </Content>
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="assets\socicon\fonts\socicon.eot" />
+    <Content Include="assets\socicon\fonts\socicon.ttf" />
+    <Content Include="assets\socicon\fonts\socicon.woff" />
+    <Content Include="assets\socicon\fonts\socicon.woff2" />
+    <Content Include="assets\web\assets\mobirise-icons2\mobirise2.eot" />
+    <Content Include="assets\web\assets\mobirise-icons2\mobirise2.ttf" />
+    <Content Include="assets\web\assets\mobirise-icons2\mobirise2.woff" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Shared\_BookingLayout.cshtml" />
+    <Content Include="assets\login\fontawesome-webfont.eot" />
+    <Content Include="assets\login\fontawesome-webfont.ttf" />
+    <Content Include="assets\login\fontawesome-webfont.woff" />
+    <Content Include="assets\login\fontawesome-webfont.woff2" />
+    <Content Include="assets\login\FontAwesome.otf" />
+    <Content Include="assets\login\animated.less" />
+    <Content Include="assets\login\bordered-pulled.less" />
+    <Content Include="assets\login\core.less" />
+    <Content Include="assets\login\fixed-width.less" />
+    <Content Include="assets\login\font-awesome.less" />
+    <Content Include="assets\login\icons.less" />
+    <Content Include="assets\login\larger.less" />
+    <Content Include="assets\login\list.less" />
+    <Content Include="assets\login\mixins.less" />
+    <Content Include="assets\login\path.less" />
+    <Content Include="assets\login\rotated-flipped.less" />
+    <Content Include="assets\login\screen-reader.less" />
+    <Content Include="assets\login\stacked.less" />
+    <Content Include="assets\login\variables.less" />
+    <Content Include="assets\login\font-awesome.scss" />
+    <Content Include="assets\login\_animated.scss" />
+    <Content Include="assets\login\_bordered-pulled.scss" />
+    <Content Include="assets\login\_core.scss" />
+    <Content Include="assets\login\_fixed-width.scss" />
+    <Content Include="assets\login\_icons.scss" />
+    <Content Include="assets\login\_larger.scss" />
+    <Content Include="assets\login\_list.scss" />
+    <Content Include="assets\login\_mixins.scss" />
+    <Content Include="assets\login\_path.scss" />
+    <Content Include="assets\login\_rotated-flipped.scss" />
+    <Content Include="assets\login\_screen-reader.scss" />
+    <Content Include="assets\login\_stacked.scss" />
+    <Content Include="assets\login\_variables.scss" />
+    <Content Include="assets\login\Poppins-Black.ttf" />
+    <Content Include="assets\login\Poppins-BlackItalic.ttf" />
+    <Content Include="assets\login\Poppins-Bold.ttf" />
+    <Content Include="assets\login\Poppins-BoldItalic.ttf" />
+    <Content Include="assets\login\Poppins-ExtraBold.ttf" />
+    <Content Include="assets\login\Poppins-ExtraBoldItalic.ttf" />
+    <Content Include="assets\login\Poppins-ExtraLight.ttf" />
+    <Content Include="assets\login\Poppins-ExtraLightItalic.ttf" />
+    <Content Include="assets\login\Poppins-Italic.ttf" />
+    <Content Include="assets\login\Poppins-Light.ttf" />
+    <Content Include="assets\login\Poppins-LightItalic.ttf" />
+    <Content Include="assets\login\Poppins-Medium.ttf" />
+    <Content Include="assets\login\Poppins-MediumItalic.ttf" />
+    <Content Include="assets\login\Poppins-Regular.ttf" />
+    <Content Include="assets\login\Poppins-SemiBold.ttf" />
+    <Content Include="assets\login\Poppins-SemiBoldItalic.ttf" />
+    <Content Include="assets\login\Poppins-Thin.ttf" />
+    <Content Include="assets\login\Poppins-ThinItalic.ttf" />
+    <Content Include="assets\login\Montserrat-Black.ttf" />
+    <Content Include="assets\login\Montserrat-BlackItalic.ttf" />
+    <Content Include="assets\login\Montserrat-Bold.ttf" />
+    <Content Include="assets\login\Montserrat-BoldItalic.ttf" />
+    <Content Include="assets\login\Montserrat-ExtraBold.ttf" />
+    <Content Include="assets\login\Montserrat-ExtraBoldItalic.ttf" />
+    <Content Include="assets\login\Montserrat-ExtraLight.ttf" />
+    <Content Include="assets\login\Montserrat-ExtraLightItalic.ttf" />
+    <Content Include="assets\login\Montserrat-Italic.ttf" />
+    <Content Include="assets\login\Montserrat-Light.ttf" />
+    <Content Include="assets\login\Montserrat-LightItalic.ttf" />
+    <Content Include="assets\login\Montserrat-Medium.ttf" />
+    <Content Include="assets\login\Montserrat-MediumItalic.ttf" />
+    <Content Include="assets\login\Montserrat-Regular.ttf" />
+    <Content Include="assets\login\Montserrat-SemiBold.ttf" />
+    <Content Include="assets\login\Montserrat-SemiBoldItalic.ttf" />
+    <Content Include="assets\login\Montserrat-Thin.ttf" />
+    <Content Include="assets\login\Montserrat-ThinItalic.ttf" />
+    <Content Include="assets\login\bootstrap-grid.css.map" />
+    <Content Include="assets\login\bootstrap-grid.min.css.map" />
+    <Content Include="assets\login\bootstrap-reboot.css.map" />
+    <Content Include="assets\login\bootstrap-reboot.min.css.map" />
+    <Content Include="assets\login\bootstrap.css.map" />
+    <Content Include="assets\login\bootstrap.min.css.map" />
+    <Content Include="Views\Home\SignUp.cshtml" />
+    <Content Include="scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Home\Verify.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50100</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:60100/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
