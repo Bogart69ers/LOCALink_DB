@@ -254,6 +254,7 @@
     </Compile>
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\UserLogged.cs" />
+    <Compile Include="Repository\MailManager.cs" />
     <Compile Include="Utils\MyRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
