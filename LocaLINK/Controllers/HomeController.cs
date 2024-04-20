@@ -156,5 +156,11 @@ namespace LocaLINK.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }
+
+        [AllowAnonymous]
+        public ActionResult Booking()
+        {
+            return View();
+        }
     }
 }

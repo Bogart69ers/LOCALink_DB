@@ -127,6 +127,61 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\booking\background1.jpg" />
+    <Content Include="assets\booking\bootstrap-grid.min.css" />
+    <Content Include="assets\booking\bootstrap-reboot.min.css" />
+    <Content Include="assets\booking\bootstrap.bundle.min.js" />
+    <Content Include="assets\booking\bootstrap.min.css" />
+    <Content Include="assets\booking\embla.min.js" />
+    <Content Include="assets\booking\formoid.min.js" />
+    <Content Include="assets\booking\index.js" />
+    <Content Include="assets\booking\mbr-838x559.jpg" />
+    <Content Include="assets\booking\mbr-additional.css" />
+    <Content Include="assets\booking\mobirise2.css" />
+    <Content Include="assets\booking\mobirise2.svg" />
+    <Content Include="assets\booking\navbar-dropdown.js" />
+    <Content Include="assets\booking\photo-1450101499163-c8848c66ca85.jpeg" />
+    <Content Include="assets\booking\photo-1455849318743-b2233052fcff.jpeg" />
+    <Content Include="assets\booking\photo-1460925895917-afdab827c52f.jpeg" />
+    <Content Include="assets\booking\photo-1472289065668-ce650ac443d2.jpeg" />
+    <Content Include="assets\booking\photo-1485811661309-ab85183a729c.jpeg" />
+    <Content Include="assets\booking\photo-1492288991661-058aa541ff43.jpeg" />
+    <Content Include="assets\booking\photo-1503551723145-6c040742065b-v2.jpeg" />
+    <Content Include="assets\booking\photo-1504805572947-34fad45aed93.jpeg" />
+    <Content Include="assets\booking\photo-1516321497487-e288fb19713f.jpeg" />
+    <Content Include="assets\booking\photo-1517048676732-d65bc937f952.jpeg" />
+    <Content Include="assets\booking\photo-1517245386807-bb43f82c33c4.jpeg" />
+    <Content Include="assets\booking\photo-1518135714426-c18f5ffb6f4d.jpeg" />
+    <Content Include="assets\booking\photo-1521791136064-7986c2920216.jpeg" />
+    <Content Include="assets\booking\photo-1522071820081-009f0129c71c.jpeg" />
+    <Content Include="assets\booking\photo-1531561855568-3036cd4f03ba.jpeg" />
+    <Content Include="assets\booking\photo-1532102235608-dc8fc689c9ab.jpeg" />
+    <Content Include="assets\booking\photo-1551434678-e076c223a692.jpeg" />
+    <Content Include="assets\booking\photo-1556745753-b2904692b3cd.jpeg" />
+    <Content Include="assets\booking\photo-1560264280-88b68371db39.jpeg" />
+    <Content Include="assets\booking\photo-1563170423-18f482d82cc8.jpeg" />
+    <Content Include="assets\booking\photo-1569390412444-c80c024169f3.jpeg" />
+    <Content Include="assets\booking\photo-1578161456171-a346107c3dcf.jpeg" />
+    <Content Include="assets\booking\photo-1579041925709-798d7d0fed1d.jpeg" />
+    <Content Include="assets\booking\photo-1591084728795-1149f32d9866.jpeg" />
+    <Content Include="assets\booking\photo-1596622723231-b20320c7346b.jpeg" />
+    <Content Include="assets\booking\photo-1605152276897-4f618f831968.jpeg" />
+    <Content Include="assets\booking\photo-1606136968306-ab2868cc1f21.jpeg" />
+    <Content Include="assets\booking\photo-1613963931023-5dc59437c8a6.jpeg" />
+    <Content Include="assets\booking\photo-1629904853893-c2c8981a1dc5.jpeg" />
+    <Content Include="assets\booking\photo-1636363407089-16874826db3b.jpeg" />
+    <Content Include="assets\booking\photo-1644945570917-1585f682efaa.jpeg" />
+    <Content Include="assets\booking\photo-1651044450619-5ce74d316987.jpeg" />
+    <Content Include="assets\booking\photo-1651853082689-706323a31427.jpeg" />
+    <Content Include="assets\booking\photo-1681415851723-dca11d0ec9a6.jpeg" />
+    <Content Include="assets\booking\player.js" />
+    <Content Include="assets\booking\script.js" />
+    <Content Include="assets\booking\smooth-scroll.js" />
+    <Content Include="assets\booking\socicon.svg" />
+    <Content Include="assets\booking\style.css" />
+    <Content Include="assets\booking\styles.css" />
+    <Content Include="assets\booking\theme\script.js" />
+    <Content Include="assets\booking\theme\style.css" />
     <Content Include="assets\bootstrap\css\bootstrap-grid.min.css" />
     <Content Include="assets\bootstrap\css\bootstrap-reboot.min.css" />
     <Content Include="assets\bootstrap\css\bootstrap.min.css" />
@@ -216,6 +271,14 @@
     </Content>
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="assets\booking\hashes.json" />
+    <Content Include="assets\booking\socicon.eot" />
+    <Content Include="assets\booking\socicon.ttf" />
+    <Content Include="assets\booking\socicon.woff" />
+    <Content Include="assets\booking\socicon.woff2" />
+    <Content Include="assets\booking\mobirise2.eot" />
+    <Content Include="assets\booking\mobirise2.ttf" />
+    <Content Include="assets\booking\mobirise2.woff" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
@@ -315,7 +378,6 @@
     <Content Include="assets\web\assets\mobirise-icons2\mobirise2.ttf" />
     <Content Include="assets\web\assets\mobirise-icons2\mobirise2.woff" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Shared\_BookingLayout.cshtml" />
     <Content Include="assets\login\fontawesome-webfont.eot" />
     <Content Include="assets\login\fontawesome-webfont.ttf" />
     <Content Include="assets\login\fontawesome-webfont.woff" />
@@ -394,6 +456,7 @@
     <Content Include="Views\Home\SignUp.cshtml" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Verify.cshtml" />
+    <Content Include="Views\Home\Booking.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
