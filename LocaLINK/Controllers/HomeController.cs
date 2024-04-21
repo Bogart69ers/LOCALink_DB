@@ -55,14 +55,12 @@ namespace LocaLINK.Controllers
                 switch (user.User_Role.rolename)
                 {
                     case Constant.Role_User:
-                        //Ari ilisdi kung asa padung og si user maka login
+
                         return RedirectToAction("Booking");
                     case Constant.Role_Worker:
-                        //Ari ilisdi kung asa padung og si worker maka login
 
                         return RedirectToAction("Index");
                     case Constant.Role_Admin:
-                        //Ari ilisdi kung asa padung og si admin maka login
 
                         return RedirectToAction("Index");
                     default:
