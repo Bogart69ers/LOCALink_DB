@@ -29,6 +29,9 @@
     <link rel="preload" as="style" href="/assets/booking/mbr-additional.css?v=xE2cJQ">
     <link rel="stylesheet" href="/assets/booking/mbr-additional.css?v=xE2cJQ" type="text/css">
 
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+
 
 
 </head>
@@ -101,12 +104,27 @@
                             <div class="col-md col-sm-12 form-group mb-3" data-for="name">
                                 <input type="text" name="name" placeholder="Name" data-form-field="name" class="form-control" value="" id="name-contact-form-2-uasfzUpiyP">
                             </div>
-                            <div class="col-md col-sm-12 form-group mb-3" data-for="email">
-                                <input type="email" name="email" placeholder="Email" data-form-field="email" class="form-control" value="" id="email-contact-form-2-uasfzUpiyP">
+                            <div class="col-md col-sm-12 form-group mb-3" data-for="contactnumber">
+                                <input type="number" name="contact" placeholder="Contact Number" data-form-field="email" class="form-control" value="" id="email-contact-form-2-uasfzUpiyP">
                             </div>
-                            <div class="col-12 form-group mb-3" data-for="textarea">
-                                <textarea name="textarea" placeholder="Request" data-form-field="textarea" class="form-control" id="textarea-contact-form-2-uasfzUpiyP"></textarea>
+                            <div class="col-12 form-group mb-3" data-for="email">
+                                <input type="date" name="email" placeholder="Date" data-form-field="email" class="form-control" value="" id="email-contact-form-2-uasfzUpiyP">
                             </div>
+                            <div class="col-12 form-group mb-3" data-for="service">
+                                <select name="service" class="form-control" id="service-select">
+                                    <option value="">Select a Service</option>
+                                    <option value="plumber">Plumber</option>
+                                    <option value="electrician">Electrician</option>
+                                    <option value="cleaner">Cleaner</option>
+                                </select>
+                            </div>
+                            <div class="col-md col-sm-12 form-group mb-3" data-for="location">
+                                <input type="text" id="search-input" placeholder="Pin Location on Map" class="form-control" value="" disabled/>
+                            </div>
+                            <div class="col-md col-sm-12 form-group mb-3" data-for="price">
+                                <input type="text" name="price" placeholder="Price" data-form-field="price" class="form-control" value="" id="email-contact-form-2-uasfzUpiyP">
+                            </div>
+                            <div id="map" style="height: 400px;"></div>
                             <div class="col-lg-12 col-md-12 col-sm-12 align-center mbr-section-btn">
                                 <button type="submit" class="btn btn-primary display-7">Book Now</button>
                             </div>
@@ -624,6 +642,43 @@
     <script src="/assets/booking/theme/script.js"></script>
     <script src="/assets/booking/formoid.min.js"></script>
 
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script>
+    // Initialize the map
+        var map = L.map('map').setView([0, 0], 2);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var searchControl = L.Control.geocoder({
+            defaultMarkGeocode: false,
+            autocomplete: true
+        }).addTo(map);
+
+        searchControl.on('markgeocode', function (e) {
+            document.getElementById('search-input').value = e.geocode.name;
+            map.setView(e.geocode.center, 13);
+        });
+
+        map.on('click', function (e) {
+            var coordinates = e.latlng.lat.toFixed(6) + ', ' + e.latlng.lng.toFixed(6);
+            reverseGeocode(coordinates);
+        });
+
+        function reverseGeocode(coordinates) {
+            fetch('https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + coordinates.split(',')[0] + '&lon=' + coordinates.split(',')[1])
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('search-input').value = data.display_name;
+                });
+        }
+
+        document.getElementById('search-input').addEventListener('focus', function () {
+            document.getElementById('map').style.display = 'block';
+            map.invalidateSize();
+        });
+    </script>
 
 </body>
 </html>
