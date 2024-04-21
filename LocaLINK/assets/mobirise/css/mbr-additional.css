@@ -1,5 +1,6 @@
 .btn {
   border-width: 2px;
+  list-style: none;
 }
 img,
 .card-wrap,
@@ -2140,8 +2141,8 @@ a {
   max-width: 800px;
 }
 .cid-uadY7auwbu {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
   background-color: #000000;
 }
 .cid-uadY7auwbu .social-row {
