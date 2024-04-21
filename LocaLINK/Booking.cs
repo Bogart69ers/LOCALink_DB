@@ -20,17 +20,17 @@ public partial class Booking
 
     public int booking_id { get; set; }
 
-    public int customer_id { get; set; }
+    public Nullable<int> customer_id { get; set; }
 
-    public int category_id { get; set; }
+    public Nullable<int> category_id { get; set; }
 
-    public string booking_date { get; set; }
-
-    public decimal total_price { get; set; }
-
-    public int status { get; set; }
+    public Nullable<System.DateTime> booking_date { get; set; }
 
     public string location { get; set; }
+
+    public Nullable<decimal> total_price { get; set; }
+
+    public Nullable<int> status { get; set; }
 
 
 
