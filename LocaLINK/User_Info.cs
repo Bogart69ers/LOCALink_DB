@@ -40,10 +40,6 @@ public partial class User_Info
 
     public Nullable<int> active { get; set; }
 
-    public Nullable<int> storeId { get; set; }
-
-    public Nullable<int> managerId { get; set; }
-
 }
 
 }

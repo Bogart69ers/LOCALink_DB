@@ -82,8 +82,6 @@
           <Property Name="state" Type="nvarchar" MaxLength="255" />
           <Property Name="zip_code" Type="nvarchar" MaxLength="5" />
           <Property Name="active" Type="int" />
-          <Property Name="storeId" Type="int" />
-          <Property Name="managerId" Type="int" />
         </EntityType>
         <EntityType Name="User_Role">
           <Key>
@@ -402,8 +400,6 @@ warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary k
           <Property Name="state" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="zip_code" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
           <Property Name="active" Type="Int32" />
-          <Property Name="storeId" Type="Int32" />
-          <Property Name="managerId" Type="Int32" />
         </EntityType>
         <EntityType Name="User_Role">
           <Key>
@@ -585,8 +581,6 @@ warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary k
           <EntitySetMapping Name="User_Info">
             <EntityTypeMapping TypeName="LOCALinkModel.User_Info">
               <MappingFragment StoreEntitySet="User_Info">
-                <ScalarProperty Name="managerId" ColumnName="managerId" />
-                <ScalarProperty Name="storeId" ColumnName="storeId" />
                 <ScalarProperty Name="active" ColumnName="active" />
                 <ScalarProperty Name="zip_code" ColumnName="zip_code" />
                 <ScalarProperty Name="state" ColumnName="state" />

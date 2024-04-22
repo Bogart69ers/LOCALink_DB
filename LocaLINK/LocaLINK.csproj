@@ -457,6 +457,7 @@
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Verify.cshtml" />
     <Content Include="Views\Home\Booking.cshtml" />
+    <Content Include="Views\Home\MyProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

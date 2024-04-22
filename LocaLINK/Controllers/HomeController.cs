@@ -154,6 +154,27 @@ namespace LocaLINK.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }
+        [AllowAnonymous]
+        public ActionResult MyProfile()
+        {
+            IsUserLoggedSession();
+            var user = _userManager.CreateOrRetrieve(User.Identity.Name, ref ErrorMessage);
+
+            return View(user);
+        }
+        [HttpPost]
+        public ActionResult MyProfile(User_Info userInf)
+        {
+            if (_userManager.UpdateUserInformation(userInf, ref ErrorMessage) == Utils.ErrorCode.Error)
+            {
+                //
+                ModelState.AddModelError(String.Empty, ErrorMessage);
+                //
+                return View(userInf);
+            }
+            TempData["Message"] = $"User Information {ErrorMessage}!";
+            return View(userInf);
+        }
 
         [AllowAnonymous]
         public ActionResult Booking()
