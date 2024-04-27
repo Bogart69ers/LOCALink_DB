@@ -10,7 +10,7 @@ using System.Web.Security;
 
 namespace LocaLINK.Controllers
 {
-    [Authorize(Roles = "User, Worker")]
+    [Authorize(Roles = "User, Worker, Admin")]
     public class HomeController : BaseController
     {
         [AllowAnonymous]
@@ -168,6 +168,7 @@ namespace LocaLINK.Controllers
             ViewBag.userEmail = userEmail.email;
             return View(user);
         }
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult MyProfile(User_Info userInf)
         {

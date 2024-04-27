@@ -32,13 +32,12 @@ namespace LocaLINK.Utils
         HasStock
     }
 
-    public enum OrderStatus
+    public enum BookingStatus
     {
-        Open,
         Pending,
-        Paid,
-        Delivered,
-        Close
+        Confirmed,
+        InProgress,
+        Done
     }
 
     public class Constant

@@ -327,7 +327,9 @@
     </Compile>
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\UserLogged.cs" />
+    <Compile Include="Repository\BookingManager.cs" />
     <Compile Include="Repository\MailManager.cs" />
+    <Compile Include="Repository\ServicesManager.cs" />
     <Compile Include="Services.cs">
       <DependentUpon>LOCALink.tt</DependentUpon>
     </Compile>
