@@ -26,7 +26,9 @@ namespace LocaLINK.Controllers
         public ActionResult Login(String ReturnUrl)
         {
             if (User.Identity.IsAuthenticated)
+            {
                 return RedirectToAction("Index");
+            }
 
             ViewBag.Error = String.Empty;
             ViewBag.ReturnUrl = ReturnUrl;
@@ -158,14 +160,22 @@ namespace LocaLINK.Controllers
         public ActionResult MyProfile()
         {
             IsUserLoggedSession();
-            var user = _userManager.CreateOrRetrieve(User.Identity.Name, ref ErrorMessage);
 
+            var username = User.Identity.Name;
+            var user = _userManager.CreateOrRetrieve(User.Identity.Name, ref ErrorMessage);
+            var userEmail = _userManager.GetUserByEmail(user.email);
+
+            ViewBag.userEmail = userEmail.email;
             return View(user);
         }
         [HttpPost]
         public ActionResult MyProfile(User_Info userInf)
         {
-            if (_userManager.UpdateUserInformation(userInf, ref ErrorMessage) == Utils.ErrorCode.Error)
+            var userEmail = _userManager.GetUserByEmail(userInf.email);
+
+            ViewBag.userEmail = userEmail.email;
+
+            if (_userManager.UpdateUserInformation(userInf, ref ErrorMessage) == ErrorCode.Error)
             {
                 //
                 ModelState.AddModelError(String.Empty, ErrorMessage);
@@ -174,6 +184,7 @@ namespace LocaLINK.Controllers
             }
             TempData["Message"] = $"User Information {ErrorMessage}!";
             return View(userInf);
+
         }
 
         [AllowAnonymous]

@@ -16,7 +16,7 @@ namespace LocaLINK.Repository
 
         public BaseRepository()
         {
-            _db = new LOCALinkEntities();
+            _db = new LOCALinkEntities1();
             _table = _db.Set<T>();
         }
         public ErrorCode Create(T t, out string errorMsg)

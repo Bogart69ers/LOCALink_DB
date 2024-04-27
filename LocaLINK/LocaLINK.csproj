@@ -259,15 +259,15 @@
     <Content Include="assets\web\assets\mobirise-icons2\mobirise2.svg" />
     <Content Include="assets\ytplayer\index.js" />
     <Content Include="Global.asax" />
-    <Content Include="LocaLINK.Context.tt">
+    <Content Include="LOCALink.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LocaLINK.edmx</DependentUpon>
-      <LastGenOutput>LocaLINK.Context.cs</LastGenOutput>
+      <DependentUpon>LOCALink.edmx</DependentUpon>
+      <LastGenOutput>LOCALink.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="LocaLINK.tt">
+    <Content Include="LOCALink.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LocaLINK.edmx</DependentUpon>
-      <LastGenOutput>LocaLINK.cs</LastGenOutput>
+      <DependentUpon>LOCALink.edmx</DependentUpon>
+      <LastGenOutput>LOCALink.cs</LastGenOutput>
     </Content>
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
@@ -279,6 +279,13 @@
     <Content Include="assets\booking\mobirise2.eot" />
     <Content Include="assets\booking\mobirise2.ttf" />
     <Content Include="assets\booking\mobirise2.woff" />
+    <EntityDeploy Include="LOCALink.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LOCALink.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="LOCALink.edmx.diagram">
+      <DependentUpon>LOCALink.edmx</DependentUpon>
+    </Content>
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
@@ -292,7 +299,10 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Booking.cs">
-      <DependentUpon>LocaLINK.tt</DependentUpon>
+      <DependentUpon>LOCALink.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BookingDetails.cs">
+      <DependentUpon>LOCALink.tt</DependentUpon>
     </Compile>
     <Compile Include="Contracts\IBaseController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -300,58 +310,58 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="LocaLINK.Context.cs">
+    <Compile Include="LOCALink.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LocaLINK.Context.tt</DependentUpon>
+      <DependentUpon>LOCALink.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="LocaLINK.cs">
+    <Compile Include="LOCALink.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LocaLINK.tt</DependentUpon>
+      <DependentUpon>LOCALink.tt</DependentUpon>
     </Compile>
-    <Compile Include="LocaLINK.Designer.cs">
+    <Compile Include="LOCALink.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LocaLINK.edmx</DependentUpon>
+      <DependentUpon>LOCALink.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\UserLogged.cs" />
     <Compile Include="Repository\MailManager.cs" />
+    <Compile Include="Services.cs">
+      <DependentUpon>LOCALink.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Service_Provider.cs">
+      <DependentUpon>LOCALink.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>LOCALink.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>LOCALink.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Status.cs">
+      <DependentUpon>LOCALink.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>LOCALink.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User_Account.cs">
+      <DependentUpon>LOCALink.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User_Info.cs">
+      <DependentUpon>LOCALink.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User_Role.cs">
+      <DependentUpon>LOCALink.tt</DependentUpon>
+    </Compile>
     <Compile Include="Utils\MyRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\UserManager.cs" />
-    <Compile Include="Service_Category.cs">
-      <DependentUpon>LocaLINK.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Service_Provider.cs">
-      <DependentUpon>LocaLINK.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>LocaLINK.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagrams_Result.cs">
-      <DependentUpon>LocaLINK.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Status.cs">
-      <DependentUpon>LocaLINK.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>LocaLINK.tt</DependentUpon>
-    </Compile>
-    <Compile Include="User_Account.cs">
-      <DependentUpon>LocaLINK.tt</DependentUpon>
-    </Compile>
-    <Compile Include="User_Info.cs">
-      <DependentUpon>LocaLINK.tt</DependentUpon>
-    </Compile>
-    <Compile Include="User_Role.cs">
-      <DependentUpon>LocaLINK.tt</DependentUpon>
-    </Compile>
     <Compile Include="Utils\Utilities.cs" />
     <Compile Include="vw_accRole.cs">
-      <DependentUpon>LocaLINK.tt</DependentUpon>
+      <DependentUpon>LOCALink.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -359,13 +369,6 @@
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <EntityDeploy Include="LocaLINK.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LocaLINK.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="LocaLINK.edmx.diagram">
-      <DependentUpon>LocaLINK.edmx</DependentUpon>
     </Content>
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />

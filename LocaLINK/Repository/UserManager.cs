@@ -111,16 +111,25 @@ namespace LocaLINK.Repository
         {
             var User = GetUserByUsername(username);
             var UserInfo = GetUserInfoByUserId(User.userId);
+
             if (UserInfo != null)
                 return UserInfo;
 
             UserInfo = new User_Info();
             UserInfo.userId = User.userId;
+            UserInfo.email = User.email;
             UserInfo.active = (Int32)status.Active;
+
+            var userEmail = User.email;
+            if (userEmail != null)
+            {
+                UserInfo.email = userEmail;
+            }
 
             _userInf.Create(UserInfo, out err);
 
             return GetUserInfoByUserId(User.userId);
+
         }
     }
 }

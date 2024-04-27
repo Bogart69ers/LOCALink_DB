@@ -12,25 +12,19 @@ namespace LocaLINK
     using System;
     using System.Collections.Generic;
     
-    public partial class Booking
+    public partial class Services
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Booking()
+        public Services()
         {
-            this.BookingDetails = new HashSet<BookingDetails>();
+            this.Service_Provider = new HashSet<Service_Provider>();
         }
     
-        public int booking_id { get; set; }
-        public string customer_id { get; set; }
-        public string service { get; set; }
-        public Nullable<System.DateTime> booking_date { get; set; }
-        public string location { get; set; }
-        public Nullable<decimal> total_price { get; set; }
-        public Nullable<int> status { get; set; }
-        public string contact { get; set; }
+        public int id { get; set; }
+        public string serviceName { get; set; }
+        public string serviceId { get; set; }
     
-        public virtual Status Status1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BookingDetails> BookingDetails { get; set; }
+        public virtual ICollection<Service_Provider> Service_Provider { get; set; }
     }
 }

@@ -5,8 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Html.AntiForgeryToken()
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,8 +30,8 @@
 </head>
 @using (Html.BeginForm())
 {
+    @Html.AntiForgeryToken()
     <body>
-
         <div class="limiter">
             <div class="container-login100">
                 <div class="wrap-login100">
@@ -47,8 +45,15 @@
                                 <span class="alert alert-success">@TempData["Message"]</span>
                                 <br /><br /><br />
                             }
+
+                            <input type="hidden" name="ReturnUrl" value="@ViewBag.ReturnUrl" />
+                            <span class="login100-form-title">
+                                My Profile Information
+                            </span>
+
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             @Html.HiddenFor(model => model.id)
+
                             <div class="form-group" hidden>
                                 @Html.LabelFor(model => model.userId, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
@@ -57,10 +62,6 @@
                                 </div>
                             </div>
 
-                            <input type="hidden" name="ReturnUrl" value="@ViewBag.ReturnUrl" />
-                            <span class="login100-form-title">
-                                My Profile Information
-                            </span>
                             <div class="wrap-input100 validate-input">
                                 <input class="input100" type="text" name="lastname" placeholder="Last Name" required>
                                 <span class="focus-input100"></span>
@@ -83,7 +84,7 @@
                                 </span>
                             </div>
                             <div class="wrap-input100 validate-input">
-                                <input class="input100" type="email" name="email" placeholder="Email" required>
+                                <input class="input100" type="text" name="email" readonly="readonly" value="@ViewBag.UserEmail"/>
                                 <span class="focus-input100"></span>
                                 <span class="symbol-input100">
                                     <i class="fa fa-envelope-square" aria-hidden="true"></i>
@@ -111,14 +112,7 @@
                                 </span>
                             </div>
                             <div class="wrap-input100 validate-input">
-                                <input class="input100" type="text" name="zip_cpde" placeholder="Zip Code" required>
-                                <span class="focus-input100"></span>
-                                <span class="symbol-input100">
-                                    <i class="fa fa-lock" aria-hidden="true"></i>
-                                </span>
-                            </div>
-                            <div class="wrap-input100 validate-input" hidden>
-                                <input class="input100" type="text" name="statue">
+                                <input class="input100" type="text" name="zip_code" placeholder="Zip Code" required>
                                 <span class="focus-input100"></span>
                                 <span class="symbol-input100">
                                     <i class="fa fa-lock" aria-hidden="true"></i>

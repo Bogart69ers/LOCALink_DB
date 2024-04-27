@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LocaLINK.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,9 @@ namespace LocaLINK
 {
     public class MyRole : RoleProvider
     {
+        public BaseRepository<User_Role> _role = new BaseRepository<User_Role>();
+        public BaseRepository<User_Account> _userAcc = new BaseRepository<User_Account>();
+
         public override string ApplicationName
         {
             get
@@ -43,7 +47,7 @@ namespace LocaLINK
 
         public override string[] GetAllRoles()
         {
-            using (var db = new LOCALinkEntities())
+            using (var db = new LOCALinkEntities1())
             {
                 return db.vw_accRole.Select(m => m.rolename).ToArray();
             }
@@ -51,7 +55,7 @@ namespace LocaLINK
 
         public override string[] GetRolesForUser(string username)
         {
-            using (var db = new LOCALinkEntities())
+            using (var db = new LOCALinkEntities1())
             {
                 return db.vw_accRole.Where(m => m.username == username).Select(m => m.username).ToArray();
             }

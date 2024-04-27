@@ -12,18 +12,14 @@ namespace LocaLINK
     using System;
     using System.Collections.Generic;
     
-    public partial class User_Info
+    public partial class BookingDetails
     {
         public int id { get; set; }
-        public string userId { get; set; }
-        public string firstname { get; set; }
-        public string lastname { get; set; }
-        public string phone_number { get; set; }
-        public string email { get; set; }
-        public string street { get; set; }
-        public string city { get; set; }
-        public string state { get; set; }
-        public string zip_code { get; set; }
-        public Nullable<int> active { get; set; }
+        public Nullable<int> booking_id { get; set; }
+        public Nullable<int> service_id { get; set; }
+        public string Price { get; set; }
+    
+        public virtual Booking Booking { get; set; }
+        public virtual Service_Provider Service_Provider { get; set; }
     }
 }
