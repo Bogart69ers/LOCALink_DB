@@ -168,6 +168,7 @@ namespace LocaLINK.Controllers
             ViewBag.userEmail = userEmail.email;
             return View(user);
         }
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult MyProfile(User_Info userInf)
         {
