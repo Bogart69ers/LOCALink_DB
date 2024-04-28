@@ -192,7 +192,6 @@ namespace LocaLINK.Controllers
         [AllowAnonymous]
         public ActionResult Booking()
         {
-<<<<<<< Updated upstream
             IsUserLoggedSession();
             var username = User.Identity.Name;
             var user = _bookingMng.CreateOrRetrieveBooking(User.Identity.Name, ref ErrorMessage);
@@ -211,9 +210,6 @@ namespace LocaLINK.Controllers
             
 
             return View(_book);
-=======
-            return View();
->>>>>>> Stashed changes
         }
     }
 }

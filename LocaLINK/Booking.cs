@@ -30,7 +30,10 @@ namespace LocaLINK
         public string contact { get; set; }
     
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         public virtual Services Services { get; set; }
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
         public virtual Status Status1 { get; set; }

@@ -6,6 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="f84d4213a0e44c65a730c6723e7d85a4" Name="Diagram1">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         <EntityTypeShape EntityType="LOCALinkModel.Booking" Width="1.5" PointX="8" PointY="3" />
         <EntityTypeShape EntityType="LOCALinkModel.BookingDetails" Width="1.5" PointX="10.25" PointY="5.25" />
         <EntityTypeShape EntityType="LOCALinkModel.Service_Provider" Width="1.5" PointX="8" PointY="7.125" />
@@ -18,6 +19,8 @@
         <EntityTypeShape EntityType="LOCALinkModel.vw_accRole" Width="1.5" PointX="4.75" PointY="6.875" />
         <AssociationConnector Association="LOCALinkModel.FK_Booking_Services" />
 =======
+=======
+>>>>>>> Stashed changes
         <EntityTypeShape EntityType="LOCALinkModel.Booking" Width="1.5" PointX="8" PointY="4.75" />
         <EntityTypeShape EntityType="LOCALinkModel.BookingDetails" Width="1.5" PointX="10.25" PointY="1.125" />
         <EntityTypeShape EntityType="LOCALinkModel.Service_Provider" Width="1.5" PointX="8" PointY="1" />
@@ -28,6 +31,9 @@
         <EntityTypeShape EntityType="LOCALinkModel.User_Info" Width="1.5" PointX="2.75" PointY="5.75" />
         <EntityTypeShape EntityType="LOCALinkModel.User_Role" Width="1.5" PointX="0.75" PointY="1.5" />
         <EntityTypeShape EntityType="LOCALinkModel.vw_accRole" Width="1.5" PointX="4.75" PointY="8.75" />
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         <AssociationConnector Association="LOCALinkModel.FK_Booking_Status" />
         <AssociationConnector Association="LOCALinkModel.FK_BookingDetails_Booking" />
