@@ -29,7 +29,10 @@ namespace LocaLINK
         public Nullable<int> status { get; set; }
         public string contact { get; set; }
     
+<<<<<<< Updated upstream
         public virtual Services Services { get; set; }
+=======
+>>>>>>> Stashed changes
         public virtual Status Status1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookingDetails> BookingDetails { get; set; }
