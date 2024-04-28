@@ -166,6 +166,7 @@ namespace LocaLINK.Controllers
             var userEmail = _userManager.GetUserByEmail(user.email);
 
             ViewBag.userEmail = userEmail.email;
+            
             return View(user);
         }
         [AllowAnonymous]
@@ -191,7 +192,24 @@ namespace LocaLINK.Controllers
         [AllowAnonymous]
         public ActionResult Booking()
         {
-            return View();
+            IsUserLoggedSession();
+            var username = User.Identity.Name;
+            var user = _bookingMng.CreateOrRetrieveBooking(User.Identity.Name, ref ErrorMessage);
+            var id = _userManager.GetUserInfoByUsername(username);
+
+            ViewBag.booking = id.userId;
+            ViewBag.Service = ServicesManager.ListsServices;
+            return View(user);
+        }
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult Booking(Booking _book)
+        {
+            var booking = _bookingMng.CreateBookingByUserId(_book, ref ErrorMessage);
+            
+            
+
+            return View(_book);
         }
     }
 }

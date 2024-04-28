@@ -48,5 +48,22 @@ namespace LocaLINK.Repository
         {
             throw new NotImplementedException();
         }
+        public Booking GetUserCustomerByUserId(String customer_id)
+        {
+            return _book._table.Where(m => m.customer_id == customer_id).FirstOrDefault();
+        }
+        public Booking CreateOrRetrieveBooking(String username, ref String err)
+        {
+            var User = _userMgr.GetUserInfoByUsername(username);
+            var book = GetUserCustomerByUserId(User.userId);
+
+            if (book != null)
+                return book;
+
+            book = new Booking();
+            book.customer_id = User.userId;
+
+            return GetUserCustomerByUserId(User.userId);
+        }
     }
 }

@@ -48,10 +48,7 @@ namespace LocaLINK.Utils
 
         public const int ERROR = 1;
         public const int SUCCESS = 0;
-
-        public const string X = "X";
-        public const string MINUS = "−";
-        public const string PLUS = "+";
+        
     }
 
     public class Utilities
@@ -94,6 +91,5 @@ namespace LocaLINK.Utils
             }
         }
 
-       
     }
 }

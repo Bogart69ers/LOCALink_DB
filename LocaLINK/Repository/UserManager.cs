@@ -119,6 +119,7 @@ namespace LocaLINK.Repository
             UserInfo.userId = User.userId;
             UserInfo.email = User.email;
             UserInfo.active = (Int32)status.Active;
+            
 
             var userEmail = User.email;
             if (userEmail != null)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using LocaLINK.Utils;
+using System.Web.Mvc;
 
 namespace LocaLINK.Repository
 {
@@ -22,10 +23,26 @@ namespace LocaLINK.Repository
             return _services.Get(id);
         }
 
-        public List<Services> ListServices(String username)
+        public static List<SelectListItem> ListsServices
         {
-            var user = _userMgr.GetUserByUsername(username);
-            return _services._table.Where(m => m.serviceId == user.userId).ToList();
+            get
+            {
+                BaseRepository<Services> service = new BaseRepository<Services>();
+                var list = new List<SelectListItem>();
+                foreach (var item in service.GetAll())
+                {
+                    var r = new SelectListItem
+                    {
+                        Text = item.serviceName,
+                        Value = item.id.ToString()
+                    };
+
+                    list.Add(r);
+                }
+
+                return list;
+            }
         }
+
     }
 }
