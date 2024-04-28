@@ -210,6 +210,14 @@ namespace LocaLINK.Controllers
             
 
             return View(_book);
+<<<<<<< Updated upstream
+=======
+        }
+        [AllowAnonymous]
+        public ActionResult Worker()
+        {
+            return View();
+>>>>>>> Stashed changes
         }
     }
 }
