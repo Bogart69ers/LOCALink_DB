@@ -461,6 +461,7 @@
     <Content Include="Views\Home\Verify.cshtml" />
     <Content Include="Views\Home\Booking.cshtml" />
     <Content Include="Views\Home\MyProfile.cshtml" />
+    <Content Include="Views\Home\Worker.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

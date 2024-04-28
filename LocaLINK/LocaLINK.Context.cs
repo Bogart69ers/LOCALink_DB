@@ -31,7 +31,6 @@ namespace LocaLINK
         public virtual DbSet<BookingDetails> BookingDetails { get; set; }
         public virtual DbSet<Service_Provider> Service_Provider { get; set; }
         public virtual DbSet<Services> Services { get; set; }
-        public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<User_Account> User_Account { get; set; }
         public virtual DbSet<User_Info> User_Info { get; set; }

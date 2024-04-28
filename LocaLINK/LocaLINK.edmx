@@ -14,7 +14,7 @@
           <Property Name="service" Type="nvarchar" MaxLength="255" />
           <Property Name="booking_date" Type="date" />
           <Property Name="location" Type="varchar" MaxLength="255" />
-          <Property Name="total_price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="total_price" Type="varchar" MaxLength="255" />
           <Property Name="status" Type="int" />
           <Property Name="contact" Type="nvarchar" MaxLength="100" />
         </EntityType>
@@ -45,13 +45,6 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="serviceName" Type="nvarchar" MaxLength="255" />
           <Property Name="serviceId" Type="nvarchar" MaxLength="255" />
-        </EntityType>
-        <EntityType Name="Status">
-          <Key>
-            <PropertyRef Name="status_id" />
-          </Key>
-          <Property Name="status_id" Type="int" Nullable="false" />
-          <Property Name="current_status" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -111,6 +104,7 @@ warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary k
           <Property Name="username" Type="nvarchar" MaxLength="50" />
           <Property Name="rolename" Type="nvarchar" MaxLength="50" />
         </EntityType>
+<<<<<<< Updated upstream
         <Association Name="FK_Booking_Status">
           <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
           <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
@@ -120,6 +114,17 @@ warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary k
             </Principal>
             <Dependent Role="Booking">
               <PropertyRef Name="status" />
+=======
+        <Association Name="FK_Booking_Services">
+          <End Role="Services" Type="Self.Services" Multiplicity="0..1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="service" />
+>>>>>>> Stashed changes
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -225,7 +230,6 @@ warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary k
           <EntitySet Name="BookingDetails" EntityType="Self.BookingDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Service_Provider" EntityType="Self.Service_Provider" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User_Account" EntityType="Self.User_Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User_Info" EntityType="Self.User_Info" Schema="dbo" store:Type="Tables" />
@@ -237,8 +241,13 @@ warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary k
     [vw_accRole].[rolename] AS [rolename]
     FROM [dbo].[vw_accRole] AS [vw_accRole]</DefiningQuery>
           </EntitySet>
+<<<<<<< Updated upstream
           <AssociationSet Name="FK_Booking_Status" Association="Self.FK_Booking_Status">
             <End Role="Status" EntitySet="Status" />
+=======
+          <AssociationSet Name="FK_Booking_Services" Association="Self.FK_Booking_Services">
+            <End Role="Services" EntitySet="Services" />
+>>>>>>> Stashed changes
             <End Role="Booking" EntitySet="Booking" />
           </AssociationSet>
           <AssociationSet Name="FK_BookingDetails_Booking" Association="Self.FK_BookingDetails_Booking">
@@ -307,14 +316,18 @@ warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary k
           <EntitySet Name="BookingDetails" EntityType="LOCALinkModel.BookingDetails" />
           <EntitySet Name="Service_Provider" EntityType="LOCALinkModel.Service_Provider" />
           <EntitySet Name="Services" EntityType="LOCALinkModel.Services" />
-          <EntitySet Name="Status" EntityType="LOCALinkModel.Status" />
           <EntitySet Name="sysdiagrams" EntityType="LOCALinkModel.sysdiagrams" />
           <EntitySet Name="User_Account" EntityType="LOCALinkModel.User_Account" />
           <EntitySet Name="User_Info" EntityType="LOCALinkModel.User_Info" />
           <EntitySet Name="User_Role" EntityType="LOCALinkModel.User_Role" />
           <EntitySet Name="vw_accRole" EntityType="LOCALinkModel.vw_accRole" />
+<<<<<<< Updated upstream
           <AssociationSet Name="FK_Booking_Status" Association="LOCALinkModel.FK_Booking_Status">
             <End Role="Status" EntitySet="Status" />
+=======
+          <AssociationSet Name="FK_Booking_Services" Association="LOCALinkModel.FK_Booking_Services">
+            <End Role="Services" EntitySet="Services" />
+>>>>>>> Stashed changes
             <End Role="Booking" EntitySet="Booking" />
           </AssociationSet>
           <AssociationSet Name="FK_BookingDetails_Booking" Association="LOCALinkModel.FK_BookingDetails_Booking">
@@ -358,10 +371,14 @@ warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary k
           <Property Name="service" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="booking_date" Type="DateTime" Precision="0" />
           <Property Name="location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="total_price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="total_price" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="status" Type="Int32" />
           <Property Name="contact" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+<<<<<<< Updated upstream
           <NavigationProperty Name="Status1" Relationship="LOCALinkModel.FK_Booking_Status" FromRole="Booking" ToRole="Status" />
+=======
+          <NavigationProperty Name="Services" Relationship="LOCALinkModel.FK_Booking_Services" FromRole="Booking" ToRole="Services" />
+>>>>>>> Stashed changes
           <NavigationProperty Name="BookingDetails" Relationship="LOCALinkModel.FK_BookingDetails_Booking" FromRole="Booking" ToRole="BookingDetails" />
         </EntityType>
         <EntityType Name="BookingDetails">
@@ -396,14 +413,6 @@ warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary k
           <Property Name="serviceName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="serviceId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Service_Provider" Relationship="LOCALinkModel.FK_Service_Provider_Service_Provider" FromRole="Services" ToRole="Service_Provider" />
-        </EntityType>
-        <EntityType Name="Status">
-          <Key>
-            <PropertyRef Name="status_id" />
-          </Key>
-          <Property Name="status_id" Type="Int32" Nullable="false" />
-          <Property Name="current_status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Booking" Relationship="LOCALinkModel.FK_Booking_Status" FromRole="Status" ToRole="Booking" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -465,6 +474,7 @@ warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary k
           <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="rolename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+<<<<<<< Updated upstream
         <Association Name="FK_Booking_Status">
           <End Type="LOCALinkModel.Status" Role="Status" Multiplicity="0..1" />
           <End Type="LOCALinkModel.Booking" Role="Booking" Multiplicity="*" />
@@ -474,6 +484,17 @@ warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary k
             </Principal>
             <Dependent Role="Booking">
               <PropertyRef Name="status" />
+=======
+        <Association Name="FK_Booking_Services">
+          <End Type="LOCALinkModel.Services" Role="Services" Multiplicity="0..1" />
+          <End Type="LOCALinkModel.Booking" Role="Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="service" />
+>>>>>>> Stashed changes
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -610,14 +631,6 @@ warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary k
                 <ScalarProperty Name="serviceId" ColumnName="serviceId" />
                 <ScalarProperty Name="serviceName" ColumnName="serviceName" />
                 <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Status">
-            <EntityTypeMapping TypeName="LOCALinkModel.Status">
-              <MappingFragment StoreEntitySet="Status">
-                <ScalarProperty Name="current_status" ColumnName="current_status" />
-                <ScalarProperty Name="status_id" ColumnName="status_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

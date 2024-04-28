@@ -61,7 +61,7 @@ namespace LocaLINK.Controllers
                         return RedirectToAction("Booking");
                     case Constant.Role_Worker:
 
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Worker");
                     case Constant.Role_Admin:
 
                         return RedirectToAction("Index");
@@ -187,9 +187,41 @@ namespace LocaLINK.Controllers
             return View(userInf);
 
         }
-
         [AllowAnonymous]
         public ActionResult Booking()
+        {
+<<<<<<< Updated upstream
+            return View();
+=======
+            IsUserLoggedSession();
+            var username = User.Identity.Name;
+            var user = _bookingMng.CreateOrRetrieveBooking(User.Identity.Name, ref ErrorMessage);
+            var id = _userManager.GetUserInfoByUsername(username);
+
+            ViewBag.booking = id.userId;
+            ViewBag.Service = ServicesManager.ListsServices;
+            return View(user);
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Booking(Booking _book)
+        {
+            var username = User.Identity.Name;
+            var user = _userManager.GetUserInfoByUserId(UserId);
+
+            if (_bookingMng.CreateBookingService(_book, username, ref ErrorMessage) != ErrorCode.Success)
+            {
+                ModelState.AddModelError(String.Empty, ErrorMessage);
+
+                ViewBag.Service = ServicesManager.ListsServices;
+                return View(_book);
+            }
+            ViewBag.Service = ServicesManager.ListsServices;
+            return View(_book);
+>>>>>>> Stashed changes
+        }
+        [AllowAnonymous]
+        public ActionResult Worker()
         {
             return View();
         }
