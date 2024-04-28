@@ -59,6 +59,13 @@
           <Property Name="status_id" Type="int" Nullable="false" />
           <Property Name="current_status" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="status_id" />
+          </Key>
+          <Property Name="status_id" Type="int" Nullable="false" />
+          <Property Name="current_status" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -118,6 +125,7 @@ warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary k
           <Property Name="rolename" Type="nvarchar" MaxLength="50" />
         </EntityType>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         <Association Name="FK_Booking_Services">
           <End Role="Services" Type="Self.Services" Multiplicity="0..1" />
           <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
@@ -130,6 +138,8 @@ warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
         <Association Name="FK_Booking_Status">
@@ -259,10 +269,13 @@ warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary k
     FROM [dbo].[vw_accRole] AS [vw_accRole]</DefiningQuery>
           </EntitySet>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           <AssociationSet Name="FK_Booking_Services" Association="Self.FK_Booking_Services">
             <End Role="Services" EntitySet="Services" />
             <End Role="Booking" EntitySet="Booking" />
           </AssociationSet>
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
           <AssociationSet Name="FK_Booking_Status" Association="Self.FK_Booking_Status">
@@ -342,10 +355,13 @@ warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary k
           <EntitySet Name="User_Role" EntityType="LOCALinkModel.User_Role" />
           <EntitySet Name="vw_accRole" EntityType="LOCALinkModel.vw_accRole" />
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           <AssociationSet Name="FK_Booking_Services" Association="LOCALinkModel.FK_Booking_Services">
             <End Role="Services" EntitySet="Services" />
             <End Role="Booking" EntitySet="Booking" />
           </AssociationSet>
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
           <AssociationSet Name="FK_Booking_Status" Association="LOCALinkModel.FK_Booking_Status">
@@ -397,7 +413,10 @@ warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary k
           <Property Name="status" Type="Int32" />
           <Property Name="contact" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           <NavigationProperty Name="Services" Relationship="LOCALinkModel.FK_Booking_Services" FromRole="Booking" ToRole="Services" />
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
           <NavigationProperty Name="Status1" Relationship="LOCALinkModel.FK_Booking_Status" FromRole="Booking" ToRole="Status" />
@@ -505,6 +524,7 @@ warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary k
           <Property Name="rolename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         <Association Name="FK_Booking_Services">
           <End Type="LOCALinkModel.Services" Role="Services" Multiplicity="0..1" />
           <End Type="LOCALinkModel.Booking" Role="Booking" Multiplicity="*" />
@@ -517,6 +537,8 @@ warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
         <Association Name="FK_Booking_Status">
