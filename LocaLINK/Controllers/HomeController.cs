@@ -190,16 +190,13 @@ namespace LocaLINK.Controllers
         [AllowAnonymous]
         public ActionResult Booking()
         {
-<<<<<<< Updated upstream
-            return View();
-=======
             IsUserLoggedSession();
             var username = User.Identity.Name;
-            var user = _bookingMng.CreateOrRetrieveBooking(User.Identity.Name, ref ErrorMessage);
+            var user = _bookMng.CreateOrRetrieveBooking(User.Identity.Name, ref ErrorMessage);
             var id = _userManager.GetUserInfoByUsername(username);
 
             ViewBag.booking = id.userId;
-            ViewBag.Service = ServicesManager.ListsServices;
+            ViewBag.Service = ServiceManager.ListsServices;
             return View(user);
         }
         [HttpPost]
@@ -209,16 +206,16 @@ namespace LocaLINK.Controllers
             var username = User.Identity.Name;
             var user = _userManager.GetUserInfoByUserId(UserId);
 
-            if (_bookingMng.CreateBookingService(_book, username, ref ErrorMessage) != ErrorCode.Success)
+            if (_bookMng.CreateBookingService(_book, username, ref ErrorMessage) != ErrorCode.Success)
             {
                 ModelState.AddModelError(String.Empty, ErrorMessage);
 
-                ViewBag.Service = ServicesManager.ListsServices;
+                ViewBag.Service = ServiceManager.ListsServices;
                 return View(_book);
             }
-            ViewBag.Service = ServicesManager.ListsServices;
+            ViewBag.Service = ServiceManager.ListsServices;
             return View(_book);
->>>>>>> Stashed changes
+
         }
         [AllowAnonymous]
         public ActionResult Worker()

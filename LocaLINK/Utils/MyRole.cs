@@ -47,7 +47,7 @@ namespace LocaLINK
 
         public override string[] GetAllRoles()
         {
-            using (var db = new LOCALinkEntities1())
+            using (var db = new LOCALinkEntities3())
             {
                 return db.vw_accRole.Select(m => m.rolename).ToArray();
             }
@@ -55,7 +55,7 @@ namespace LocaLINK
 
         public override string[] GetRolesForUser(string username)
         {
-            using (var db = new LOCALinkEntities1())
+            using (var db = new LOCALinkEntities3())
             {
                 return db.vw_accRole.Where(m => m.username == username).Select(m => m.username).ToArray();
             }

@@ -12,6 +12,8 @@ namespace LocaLINK.Controllers
     {
         public String ErrorMessage;
         public UserManager _userManager;
+        public BookingManager _bookMng;
+        public ServiceManager _serManager;
         
         public String Username { get { return User.Identity.Name; } }
         public String UserId { get { return _userManager.GetUserByUsername(Username).userId; } }
@@ -20,6 +22,8 @@ namespace LocaLINK.Controllers
         {
             ErrorMessage = String.Empty;
             _userManager = new UserManager();
+            _bookMng = new BookingManager();
+            _serManager = new ServiceManager();
 
         }
         public void IsUserLoggedSession()

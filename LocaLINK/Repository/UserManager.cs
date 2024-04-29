@@ -17,8 +17,7 @@ namespace LocaLINK.Repository
             _userAcc = new BaseRepository<User_Account>();
             _userInf = new BaseRepository<User_Info>();
         }
-
-        #region Get User By ---
+        
         public User_Account GetUserById(int Id)
         {
             return _userAcc.Get(Id);
@@ -35,7 +34,6 @@ namespace LocaLINK.Repository
         {
             return _userAcc._table.Where(m => m.email == email).FirstOrDefault();
         }
-        #endregion
         public ErrorCode Login(String username, String password, ref String errMsg)
         {
             var userSignIn = GetUserByUsername(username);

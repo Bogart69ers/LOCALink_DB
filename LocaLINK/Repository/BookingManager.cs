@@ -8,21 +8,21 @@ namespace LocaLINK.Repository
 {
     public class BookingManager
     {
-        LOCALinkEntities1 _db;
+        LOCALinkEntities3 _db;
         BaseRepository<Booking> _book;
         UserManager _userMgr;
 
 
         public BookingManager()
         {
-            _db = new LOCALinkEntities1();
+            _db = new LOCALinkEntities3();
             _book = new BaseRepository<Booking>();
             _userMgr = new UserManager();
         }
         
         public List<Booking> GetBookingByUserId(String customer_id)
         {
-            return _book._table.Where(m => m.customer_id == customer_id && m.status == (Int32)BookingStatus.Pending).ToList();
+            return _book._table.Where(m => m.customer_id == customer_id && m.status == (Int32)BookStatus.Pending).ToList();
         }
 
         public ErrorCode CreateBookingService(Booking bookingnm, string username, ref string errMsg)
@@ -30,7 +30,7 @@ namespace LocaLINK.Repository
             var userinf = _userMgr.GetUserInfoByUsername(username);
 
             bookingnm.customer_id = userinf.userId;
-            bookingnm.status = (int)BookingStatus.Pending;
+            bookingnm.status = (int)BookStatus.Pending;
 
             if (_book.Create(bookingnm, out errMsg) != ErrorCode.Success)
             {

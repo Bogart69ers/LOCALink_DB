@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Booking";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,19 +92,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-8 mx-auto mbr-form" data-form-type="formoid">
-<<<<<<< Updated upstream
-                    <form action="https://mobirise.eu/" method="POST" class="mbr-form form-with-styler" data-form-title="Form Name">
-                        <input type="hidden" name="email" data-form-email="true" value="Edge9lVrCQradfwyr9bDXt3nuOa3IGdG3F3Z8pu+mpkE+xmN5pCWKRjJ5kM4R+BygfMOAXJ3avzzWTUj5KrJ8R+a7lkovDlk40Whvfo92saezcP0+rXnO4WcFDgkoJrB">
-                        <div class="row">
-                            <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Thanks for filling out the form!</div>
-                            <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">
-                                Oops...! some problem!
-                            </div>
-                        </div>
-                        <div class="dragArea row">
-                            <div class="col-md col-sm-12 form-group mb-3" data-for="name">
-                                <input type="text" name="name" placeholder="Name" data-form-field="name" class="form-control" value="" id="name-contact-form-2-uasfzUpiyP">
-=======
+
                     @using (Html.BeginForm())
                     {
                         @Html.AntiForgeryToken()
@@ -121,41 +109,24 @@
                             </div>
                             <div class="col-md col-sm-12 form-group mb-3" data-for="customer_id">
                                 <input type="text" name="customer_id" placeholder="Id" data-form-field="customer_id" class="form-control" value="@ViewBag.booking" readonly="readonly">
->>>>>>> Stashed changes
                             </div>
                             <div class="col-md col-sm-12 form-group mb-3" data-for="contactnumber">
                                 <input type="number" name="contact" placeholder="Contact Number" data-form-field="email" class="form-control" value="" id="email-contact-form-2-uasfzUpiyP">
                             </div>
                             <div class="col-12 form-group mb-3" data-for="date">
-<<<<<<< Updated upstream
-                                <input type="date" name="email" placeholder="Date" data-form-field="date" class="form-control" value="" id="email-contact-form-2-uasfzUpiyP">
-                            </div>
-                            <div class="col-12 form-group mb-3" data-for="service">
-                                <select name="category_id" class="form-control" id="service-select">
-                                    <option value="">Select a Service</option>
-                                    <option value="plumber">Plumber</option>
-                                    <option value="electrician">Electrician</option>
-                                    <option value="cleaner">Cleaner</option>
-                                </select>
-=======
                                 <input type="date" name="booking_date" placeholder="Date" data-form-field="date" class="form-control" value="" id="email-contact-form-2-uasfzUpiyP">
                             </div>
                             <div class="col-12 form-group mb-3" data-for="service">
                                 @Html.DropDownList("service", (IEnumerable<SelectListItem>)ViewBag.Service, "Select Sevices", new { @class = "form-control", @id = "service", @required = true })
->>>>>>> Stashed changes
                             </div>
                             <div class="col-md col-sm-12 form-group mb-3" data-for="location">
-                                <input type="text" id="search-input" placeholder="Pin Location on Map" class="form-control" value="" disabled/>
+                                <input type="text" name="location" id="search-input" placeholder="Pin Location on Map" class="form-control" value="" readonly="readonly">
                             </div>
                             <div class="col-md col-sm-12 form-group mb-3" data-for="price">
-<<<<<<< Updated upstream
-                                <input type="text" name="price" placeholder="Price" data-form-field="price" class="form-control" value="" id="email-contact-form-2-uasfzUpiyP">
-=======
                                 <input type="text" name="total_price" placeholder="Price" data-form-field="price" class="form-control" value="" id="price" readonly ="readonly">
                             </div>
                             <div class="col-md col-sm-12 form-group mb-3" data-for="price" hidden>
                                 <input type="text" name="status" placeholder="Status" data-form-field="status" class="form-control" value="" id="price" readonly="readonly">
->>>>>>> Stashed changes
                             </div>
                             <div id="map" style="height: 400px; border-radius:30px;"></div>
                             <div class="col-lg-12 col-md-12 col-sm-12 align-center mbr-section-btn">
@@ -167,10 +138,6 @@
             </div>
         </div>
     </section>
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 
     <section data-bs-version="5.1" class="article13 cid-uasfzUk4w9" id="call-to-action-5-uasfzUk4w9">
 
@@ -704,51 +671,7 @@
             map.invalidateSize();
         });
     </script>
-<<<<<<< Updated upstream
-=======
     <script>
-        //var serviceSelect = document.getElementById("service");
-        //var priceInput = document.getElementById("price");
-
-        //// Add event listener to the service select element
-        //serviceSelect.addEventListener("change", function () {
-        //    // Get the selected service value
-        //    var selectedService = serviceSelect.value;
-
-        //    // Set the price based on the selected service
-        //    switch (selectedService) {
-        //        case "Cleaning Service":
-        //            priceInput.value = "₱1,500"; // Set the fixed price for cleaning service
-        //            break;
-        //        case "Plumbing":
-        //            priceInput.value = "₱3,000"; // Set the fixed price for plumbing service
-        //            break;
-        //        case "Electricians":
-        //            priceInput.value = "₱7,500"; // Set the fixed price for electrician service
-        //            break;
-        //        case "Appliance Repair":
-        //            priceInput.value = "₱2,500"; // Set the fixed price for appliance repair service
-        //            break;
-        //        case "HVAC Technicians":
-        //            priceInput.value = "₱3,500"; // Set the fixed price for HVAC technicians service
-        //            break;
-        //        case "Computer Repair and IT Support":
-        //            priceInput.value = "₱5,500"; // Set the fixed price for computer repair and IT support service
-        //            break;
-        //        case "Home Security Systems":
-        //            priceInput.value = "₱10,500"; // Set the fixed price for home security systems service
-        //            break;
-        //        case "Handyman Services":
-        //            priceInput.value = "₱7,500"; // Set the fixed price for handyman services
-        //            break;
-        //        case "Gardening":
-        //            priceInput.value = "₱3,500"; // Set the fixed price for gardening service
-        //            break;
-        //            // Add cases for other services and their respective prices here
-        //        default:
-        //            priceInput.value = "0.00"; // Clear the price if no service is selected
-        //    }
-        //});
         var serviceDropdown = document.getElementById("service");
 
         // Add event listener to listen for changes in the dropdown selection
@@ -785,7 +708,6 @@
             }
         });
     </script>
->>>>>>> Stashed changes
 
 </body>
 </html>

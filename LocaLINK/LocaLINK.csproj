@@ -259,15 +259,15 @@
     <Content Include="assets\web\assets\mobirise-icons2\mobirise2.svg" />
     <Content Include="assets\ytplayer\index.js" />
     <Content Include="Global.asax" />
-    <Content Include="LOCALink.Context.tt">
+    <Content Include="locaLINK.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LOCALink.edmx</DependentUpon>
-      <LastGenOutput>LOCALink.Context.cs</LastGenOutput>
+      <DependentUpon>locaLINK.edmx</DependentUpon>
+      <LastGenOutput>locaLINK.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="LOCALink.tt">
+    <Content Include="locaLINK.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LOCALink.edmx</DependentUpon>
-      <LastGenOutput>LOCALink.cs</LastGenOutput>
+      <DependentUpon>locaLINK.edmx</DependentUpon>
+      <LastGenOutput>locaLINK.cs</LastGenOutput>
     </Content>
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
@@ -279,12 +279,12 @@
     <Content Include="assets\booking\mobirise2.eot" />
     <Content Include="assets\booking\mobirise2.ttf" />
     <Content Include="assets\booking\mobirise2.woff" />
-    <EntityDeploy Include="LOCALink.edmx">
+    <EntityDeploy Include="locaLINK.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LOCALink.Designer.cs</LastGenOutput>
+      <LastGenOutput>locaLINK.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="LOCALink.edmx.diagram">
-      <DependentUpon>LOCALink.edmx</DependentUpon>
+    <Content Include="locaLINK.edmx.diagram">
+      <DependentUpon>locaLINK.edmx</DependentUpon>
     </Content>
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
@@ -299,10 +299,10 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Booking.cs">
-      <DependentUpon>LOCALink.tt</DependentUpon>
+      <DependentUpon>locaLINK.tt</DependentUpon>
     </Compile>
     <Compile Include="BookingDetails.cs">
-      <DependentUpon>LOCALink.tt</DependentUpon>
+      <DependentUpon>locaLINK.tt</DependentUpon>
     </Compile>
     <Compile Include="Contracts\IBaseController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -310,50 +310,43 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="LOCALink.Context.cs">
+    <Compile Include="locaLINK.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LOCALink.Context.tt</DependentUpon>
+      <DependentUpon>locaLINK.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="LOCALink.cs">
+    <Compile Include="locaLINK.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LOCALink.tt</DependentUpon>
+      <DependentUpon>locaLINK.tt</DependentUpon>
     </Compile>
-    <Compile Include="LOCALink.Designer.cs">
+    <Compile Include="locaLINK.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LOCALink.edmx</DependentUpon>
+      <DependentUpon>locaLINK.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\UserLogged.cs" />
+    <Compile Include="Repository\BookingManager.cs" />
     <Compile Include="Repository\MailManager.cs" />
+    <Compile Include="Repository\ServiceManager.cs" />
     <Compile Include="Services.cs">
-      <DependentUpon>LOCALink.tt</DependentUpon>
+      <DependentUpon>locaLINK.tt</DependentUpon>
     </Compile>
     <Compile Include="Service_Provider.cs">
-      <DependentUpon>LOCALink.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>LOCALink.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagrams_Result.cs">
-      <DependentUpon>LOCALink.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Status.cs">
-      <DependentUpon>LOCALink.tt</DependentUpon>
+      <DependentUpon>locaLINK.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
-      <DependentUpon>LOCALink.tt</DependentUpon>
+      <DependentUpon>locaLINK.tt</DependentUpon>
     </Compile>
     <Compile Include="User_Account.cs">
-      <DependentUpon>LOCALink.tt</DependentUpon>
+      <DependentUpon>locaLINK.tt</DependentUpon>
     </Compile>
     <Compile Include="User_Info.cs">
-      <DependentUpon>LOCALink.tt</DependentUpon>
+      <DependentUpon>locaLINK.tt</DependentUpon>
     </Compile>
     <Compile Include="User_Role.cs">
-      <DependentUpon>LOCALink.tt</DependentUpon>
+      <DependentUpon>locaLINK.tt</DependentUpon>
     </Compile>
     <Compile Include="Utils\MyRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -361,7 +354,7 @@
     <Compile Include="Repository\UserManager.cs" />
     <Compile Include="Utils\Utilities.cs" />
     <Compile Include="vw_accRole.cs">
-      <DependentUpon>LOCALink.tt</DependentUpon>
+      <DependentUpon>locaLINK.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -22,18 +22,14 @@ namespace LocaLINK
     
         public int booking_id { get; set; }
         public string customer_id { get; set; }
-        public string service { get; set; }
+        public Nullable<int> service { get; set; }
         public Nullable<System.DateTime> booking_date { get; set; }
         public string location { get; set; }
         public string total_price { get; set; }
         public Nullable<int> status { get; set; }
         public string contact { get; set; }
     
-<<<<<<< Updated upstream
-        public virtual Status Status1 { get; set; }
-=======
         public virtual Services Services { get; set; }
->>>>>>> Stashed changes
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookingDetails> BookingDetails { get; set; }
     }
