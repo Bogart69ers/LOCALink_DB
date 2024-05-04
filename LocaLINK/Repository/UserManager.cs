@@ -121,7 +121,7 @@ namespace LocaLINK.Repository
             var userEmail = User.email;
             if (userEmail != null)
             {
-                UserInfo.email = userEmail;
+                UserInfo.email = userEmail; 
             }
 
             _userInf.Create(UserInfo, out err);
