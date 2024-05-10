@@ -35,7 +35,7 @@ namespace LocaLINK.Utils
     public enum BookStatus
     {
         Pending,
-        Comfirmed,
+        Confirmed,
         InProgress,
         Done
     }

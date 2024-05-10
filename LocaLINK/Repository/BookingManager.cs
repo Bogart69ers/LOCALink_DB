@@ -10,6 +10,7 @@ namespace LocaLINK.Repository
     {
         LOCALinkEntities3 _db;
         BaseRepository<Booking> _book;
+        BaseRepository<User_Info> _info;
         UserManager _userMgr;
 
 
@@ -18,6 +19,7 @@ namespace LocaLINK.Repository
             _db = new LOCALinkEntities3();
             _book = new BaseRepository<Booking>();
             _userMgr = new UserManager();
+            _info = new BaseRepository<User_Info>();
         }
         
         public List<Booking> GetBookingByUserId(String customer_id)
@@ -40,6 +42,12 @@ namespace LocaLINK.Repository
 
         }
 
+        public ErrorCode UpdateBookingStatus(Booking status, ref String errMsg)
+        {
+            return _book.Update(status.booking_id, status, out errMsg);
+        }
+
+
         internal ErrorCode CreateBookingByUserId(Booking booking, ref string errorMessage)
         {
             throw new NotImplementedException();
@@ -61,5 +69,11 @@ namespace LocaLINK.Repository
 
             return GetUserCustomerByUserId(User.userId);
         }
+
+        public List<Booking> GetAllBookings()
+        {
+            return _book.GetAll().ToList();
+        }
+
     }
 }

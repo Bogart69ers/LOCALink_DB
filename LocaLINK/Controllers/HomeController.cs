@@ -64,7 +64,7 @@ namespace LocaLINK.Controllers
                         return RedirectToAction("Worker");
                     case Constant.Role_Admin:
 
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Admin");
                     default:
                         return RedirectToAction("Index");
                 }
@@ -154,7 +154,7 @@ namespace LocaLINK.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Login");
+            return RedirectToAction("Index");
         }
         [AllowAnonymous]
         public ActionResult MyProfile()
@@ -220,7 +220,33 @@ namespace LocaLINK.Controllers
         [AllowAnonymous]
         public ActionResult Worker()
         {
-            return View();
+            var bookingManager = new BookingManager();
+            
+            var allBookings = bookingManager.GetAllBookings();
+
+            return View(allBookings);
         }
+
+        [HttpPost]
+        public ActionResult UpdateStatus(string booking_id)
+        {
+            var bookstatus = _bookMng.GetUserCustomerByUserId(booking_id);
+
+            bookstatus.status = (Int32)BookStatus.Confirmed;
+            _bookMng.UpdateBookingStatus(bookstatus, ref ErrorMessage);
+
+            return View(bookstatus);
+        }
+        [AllowAnonymous]
+        public ActionResult Admin()
+        {
+            var bookingManager = new BookingManager();
+
+            var allBookings = bookingManager.GetAllBookings();
+
+            return View(allBookings);
+        }
+        
+
     }
 }

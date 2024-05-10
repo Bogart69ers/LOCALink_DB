@@ -1,9 +1,11 @@
-﻿@model LocaLINK.Service_Provider
+﻿@model IEnumerable<LocaLINK.Booking>
 
 @{
     ViewBag.Title = "Worker";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,40 +15,150 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <style>
         #map {
-            height: 890px;
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100vh;
+        }
+
+
+        #detail-overlay {
+            width: 500px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            border-radius: 20px;
+            flex-wrap:wrap;
+        }
+
+        #detail-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        #detail-arrows {
+            flex: 0 0 auto;
+        }
+
+        .popup-btn {
+            cursor: pointer;
+            margin-top: 5px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
         }
     </style>
 </head>
-<body>
-    <div id="map"></div>
+@using (Html.BeginForm())
+{
+    <body>
+        <div id="map"></div>
+        <div id="detail-overlay">
+            <div id="detail-content"></div>
+            <input type="submit" class="popup-btn" value="Accept Request">
+        </div>
 
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
-    <script>
+        <script>
+        var bookings = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model, new Newtonsoft.Json.JsonSerializerSettings
+        {
+            ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+        })); // Serialize the model to JavaScript object
+
+        var currentBookingIndex = 0;
         var map;
-        var ajaxRequest;
-        var plotlist;
-        var plotlayers = [];
 
-        // Init Open Street Maps
+        function updateDetailContent(index) {
+            var content = "";
+            var booking = bookings[index];
+            var bookingDate = new Date(Date.parse(booking.booking_date));
+            var formattedDate = bookingDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+            content += "<b>Location:</b> " + booking.location + "<br>" +
+                              "<b>Customer Name: </b>" + booking.name + "<br>" +
+                              "<b>Date: </b>" + formattedDate + "<br>" +
+                              "<b>Price:</b> " + booking.total_price + "<br>" +
+                              "<b>Status: </b>" + booking.status +"<br><br>"
+
+            document.getElementById('detail-content').innerHTML = content;
+        }
+
         function initmap() {
-            // set up the map
             map = new L.Map('map');
             var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
             var osmAttrib = 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
             var osm = new L.TileLayer(osmUrl, { minZoom: 2, maxZoom: 19, attribution: osmAttrib });
-            map.setView(new L.LatLng(48.420296, 9.964151), 15);
+            map.setView(new L.LatLng(12.8797, 121.7740), 6);
+
             map.addLayer(osm);
 
-            var marker = L.marker([48.420296, 9.964151]).addTo(map);
-            marker.bindPopup("<b>Botanischer Garten</b><br>is here").openPopup();
+            // Plot markers for each booking location
+            bookings.forEach(function(booking, index) {
+                var popupContent = "<b>Price:</b> " + booking.total_price;
+
+                var marker = L.marker([booking.latitude, booking.longitude]).addTo(map);
+                marker.bindPopup(popupContent, {autoClose: false });
+
+                marker.on('click', function() {
+                    currentBookingIndex = index;
+                    updateDetailContent(index);
+                });
+            });
+
+            // Update detail content when map initializes
+            updateDetailContent(0);
         }
 
-        initmap();
-    </script>
-</body>
+        document.addEventListener('DOMContentLoaded', function() {
+            initmap();
+
+            // Handle form submission
+            document.getElementById('booking-form').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                var formData = new FormData(this);
+
+                // Send AJAX request to update status
+                var booking_id = bookings[currentBookingIndex].booking_id;
+                formData.append('booking_id', booking_id);
+
+                $.ajax({
+                    url: '/Home/UpdateStatus',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,  // Prevent jQuery from processing the data
+                    contentType: false,  // Prevent jQuery from setting the content type
+                    success: function(response) {
+                        if (response.success) {
+                            alert('Status updated successfully');
+                            // Optionally, update the UI to reflect the new status
+                        } else {
+                            alert('Error: ' + response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Error: ' + error);
+                    }
+                });
+            });
+        });
+        </script>
+
+    </body>
+}
 </html>
-
-

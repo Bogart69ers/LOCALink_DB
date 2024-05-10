@@ -11,12 +11,15 @@
           </Key>
           <Property Name="booking_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="customer_id" Type="nvarchar(max)" />
+          <Property Name="name" Type="nvarchar" MaxLength="255" />
           <Property Name="service" Type="int" />
           <Property Name="booking_date" Type="date" />
           <Property Name="location" Type="varchar" MaxLength="255" />
           <Property Name="total_price" Type="varchar" MaxLength="255" />
           <Property Name="status" Type="int" />
           <Property Name="contact" Type="nvarchar" MaxLength="100" />
+          <Property Name="longitude" Type="nvarchar(max)" />
+          <Property Name="latitude" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="BookingDetails">
           <Key>
@@ -269,6 +272,9 @@ warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary k
           <Property Name="contact" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Services" Relationship="LOCALinkModel.FK_Booking_Services" FromRole="Booking" ToRole="Services" />
           <NavigationProperty Name="BookingDetails" Relationship="LOCALinkModel.FK_BookingDetails_Booking" FromRole="Booking" ToRole="BookingDetails" />
+          <Property Name="longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="BookingDetails">
           <Key>
@@ -444,6 +450,9 @@ warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary k
           <EntitySetMapping Name="Booking">
             <EntityTypeMapping TypeName="LOCALinkModel.Booking">
               <MappingFragment StoreEntitySet="Booking">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
                 <ScalarProperty Name="contact" ColumnName="contact" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="total_price" ColumnName="total_price" />

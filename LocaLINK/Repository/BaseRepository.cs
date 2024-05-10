@@ -19,6 +19,12 @@ namespace LocaLINK.Repository
             _db = new LOCALinkEntities3();
             _table = _db.Set<T>();
         }
+
+        public T GetByID(int id)
+        {
+            return _db.Set<T>().Find(id);
+        }
+
         public ErrorCode Create(T t, out string errorMsg)
         {
             try

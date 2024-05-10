@@ -28,6 +28,9 @@ namespace LocaLINK
         public string total_price { get; set; }
         public Nullable<int> status { get; set; }
         public string contact { get; set; }
+        public string longitude { get; set; }
+        public string latitude { get; set; }
+        public string name { get; set; }
     
         public virtual Services Services { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

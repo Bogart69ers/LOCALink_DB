@@ -107,8 +107,11 @@
                             <div class="col-md col-sm-12 form-group mb-3" data-for="booking_id" hidden>
                                 <input type="number" name="booking_id" data-form-field="booking_id" class="form-control" value="">
                             </div>
-                            <div class="col-md col-sm-12 form-group mb-3" data-for="customer_id">
-                                <input type="text" name="customer_id" placeholder="Id" data-form-field="customer_id" class="form-control" value="@ViewBag.booking" readonly="readonly">
+                            <div class="col-md col-sm-12 form-group mb-3" data-for="customer_id" hidden>
+                                <input type="hidden" name="customer_id" placeholder="Id" data-form-field="customer_id" class="form-control" value="@ViewBag.booking" readonly="readonly">
+                            </div>
+                            <div class="col-md col-sm-12 form-group mb-3" data-for="name">
+                                <input type="text" name="name" placeholder="Name" data-form-field="customer_id" class="form-control">
                             </div>
                             <div class="col-md col-sm-12 form-group mb-3" data-for="contactnumber">
                                 <input type="number" name="contact" placeholder="Contact Number" data-form-field="email" class="form-control" value="" id="email-contact-form-2-uasfzUpiyP">
@@ -121,6 +124,12 @@
                             </div>
                             <div class="col-md col-sm-12 form-group mb-3" data-for="location">
                                 <input type="text" name="location" id="search-input" placeholder="Pin Location on Map" class="form-control" value="" readonly="readonly">
+                            </div>
+                            <div class="col-md col-sm-12 form-group mb-3" data-for="latitude"hidden >
+                                <input type="text" name="latitude" id="latitude" value="">
+                            </div>
+                            <div class="col-md col-sm-12 form-group mb-3" data-for="longitude"hidden >
+                                <input type="text" name="longitude" id="longitude" value="">
                             </div>
                             <div class="col-md col-sm-12 form-group mb-3" data-for="price">
                                 <input type="text" name="total_price" placeholder="Price" data-form-field="price" class="form-control" value="" id="price" readonly ="readonly">
@@ -638,7 +647,7 @@
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
     <script>
     // Initialize the map
-        var map = L.map('map').setView([0, 0], 2);
+        var map = L.map('map').setView([12.8797, 121.7740], 6);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
@@ -655,9 +664,10 @@
 
         map.on('click', function (e) {
             var coordinates = e.latlng.lat.toFixed(6) + ', ' + e.latlng.lng.toFixed(6);
+            document.getElementById('latitude').value = e.latlng.lat.toFixed(6);
+            document.getElementById('longitude').value = e.latlng.lng.toFixed(6);
             reverseGeocode(coordinates);
         });
-
         function reverseGeocode(coordinates) {
             fetch('https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + coordinates.split(',')[0] + '&lon=' + coordinates.split(',')[1])
                 .then(response => response.json())
@@ -666,11 +676,14 @@
                 });
         }
 
+
         document.getElementById('search-input').addEventListener('focus', function () {
             document.getElementById('map').style.display = 'block';
             map.invalidateSize();
         });
+
     </script>
+
     <script>
         var serviceDropdown = document.getElementById("service");
 
