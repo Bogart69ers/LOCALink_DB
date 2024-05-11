@@ -291,5 +291,21 @@ namespace LocaLINK.Controllers
             return View(allBookings);
         }
 
+        [AllowAnonymous]
+        public ActionResult UserAccounts()
+        {
+            var user = new UserManager();
+
+            var alluser = user.GetAllBUserInfo();
+
+            return View(alluser);
+        }
+
+        [AllowAnonymous]
+        public ActionResult ManageAccount()
+        {
+            return View();
+        }
+
     }
 }

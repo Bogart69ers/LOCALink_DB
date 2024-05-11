@@ -129,5 +129,9 @@ namespace LocaLINK.Repository
             return GetUserInfoByUserId(User.userId);
 
         }
+        public List<User_Account> GetAllBUserInfo()
+        {
+            return _userAcc.GetAll().ToList();
+        }
     }
 }
