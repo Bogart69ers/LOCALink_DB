@@ -1,8 +1,7 @@
 ﻿@model LocaLINK.Booking
 
-@{
+@{ 
     ViewBag.Title = "Booking";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <!DOCTYPE html>
 <html>
@@ -36,6 +35,103 @@
 
 </head>
 <body>
+    <section data-bs-version="5.1" class="menu menu2 cid-uadY7arbeN" once="menu" id="menu-5-uadY7arbeN">
+
+        <nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+            <div class="container">
+                <div class="navbar-brand">
+                    <span class="navbar-caption-wrap"><a class="navbar-caption text-black display-4">LOCALink</a></span>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("User"))
+                    {
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+                                <li class="nav-item">
+                                    <a class="nav-link link text-black display-4" href="#about-us-4-uasfzUizNx">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link link text-black display-4" href="#contact-form-2-uasfzUpiyP">Book</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link link text-black display-4" href="#call-to-action-5-uasfzUk4w9" aria-expanded="false">Services</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link link text-black display-4" href="#call-to-action-5-uasfzUk4w9">Booking & Progress </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <div class="navbar-buttons mbr-section-btn">
+                                    <button class="btn btn-primary display-4" type="button" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                                        </svg>
+                                        <span style="margin-left: 10px;">@User.Identity.Name</span>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdown-278">
+                                        <a class="text-black dropdown-item display-4" href="/Home/MyProfile">Edit Profile</a>
+                                        <button class="text-black dropdown-item display-4" onclick="logoutConfirmation()">Sign Out<br></button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+                                <li class="nav-item">
+                                    <a class="nav-link link text-black display-4" href="#about-us-4-uasfzUizNx">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link link text-black display-4" href="#contact-form-2-uasfzUpiyP">Book</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link link text-black display-4" href="#call-to-action-5-uasfzUk4w9" aria-expanded="false">Services</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link link text-black display-4" href="#call-to-action-5-uasfzUk4w9">Booking & Progress </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <div class="navbar-buttons mbr-section-btn">
+                                    <button class="btn btn-primary display-4" type="button" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                                        </svg>
+                                        <span style="margin-left: 10px;">@User.Identity.Name</span>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdown-278">
+                                        <a class="text-black dropdown-item display-4" href="/Home/MyProfile">Edit Profile</a>
+                                        <button class="text-black dropdown-item display-4" onclick="logoutConfirmation()">Sign Out<br></button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    }
+                }
+
+            </div>
+        </nav>
+    </section>
 
     <section data-bs-version="5.1" class="header18 cid-uasfzUhJpe mbr-fullscreen" data-bg-video="https://www.youtube.com/watch?v=lu72YfaDU1o" id="hero-16-uasfzUhJpe">
 
@@ -93,7 +189,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8 mx-auto mbr-form" data-form-type="formoid">
 
-                    @using (Html.BeginForm())
+                    @using (Html.BeginForm("Booking", "Home", FormMethod.Post, new { id = "bookingForm" }))
                     {
                         @Html.AntiForgeryToken()
 
@@ -125,21 +221,21 @@
                             <div class="col-md col-sm-12 form-group mb-3" data-for="location">
                                 <input type="text" name="location" id="search-input" placeholder="Pin Location on Map" class="form-control" value="" readonly="readonly">
                             </div>
-                            <div class="col-md col-sm-12 form-group mb-3" data-for="latitude"hidden >
+                            <div class="col-md col-sm-12 form-group mb-3" data-for="latitude" hidden>
                                 <input type="text" name="latitude" id="latitude" value="">
                             </div>
-                            <div class="col-md col-sm-12 form-group mb-3" data-for="longitude"hidden >
+                            <div class="col-md col-sm-12 form-group mb-3" data-for="longitude" hidden>
                                 <input type="text" name="longitude" id="longitude" value="">
                             </div>
                             <div class="col-md col-sm-12 form-group mb-3" data-for="price">
-                                <input type="text" name="total_price" placeholder="Price" data-form-field="price" class="form-control" value="" id="price" readonly ="readonly">
+                                <input type="text" name="total_price" placeholder="Price" data-form-field="price" class="form-control" value="" id="price" readonly="readonly">
                             </div>
                             <div class="col-md col-sm-12 form-group mb-3" data-for="price" hidden>
                                 <input type="text" name="status" placeholder="Status" data-form-field="status" class="form-control" value="" id="price" readonly="readonly">
                             </div>
                             <div id="map" style="height: 400px; border-radius:30px;"></div>
                             <div class="col-lg-12 col-md-12 col-sm-12 align-center mbr-section-btn">
-                                <button type="submit" class="btn btn-primary display-7">Book Now</button>
+                                <button type="button" onclick="bookConfirmation()" id="confirmButton" class="btn btn-primary display-7">Confirm Booking</button>
                             </div>
                         </div>
                     }
@@ -631,7 +727,7 @@
             </div>
         </div>
     </section>
-   
+
 
     <script src="/assets/booking/bootstrap.bundle.min.js"></script>
     <script src="/assets/booking/smooth-scroll.js"></script>
@@ -720,6 +816,27 @@
                 document.getElementById("price").value = "";
             }
         });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function bookConfirmation() {
+            Swal.fire({
+                title: 'Booking Confirmation',
+                text: "Are you sure you want to book?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, confirm'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Enable the main "Book Now" button and submit the form
+                    document.getElementById('confirmButton').setAttribute('disabled', 'disabled');
+                    document.getElementById('bookingForm').submit();
+                }
+            });
+        }
     </script>
 
 </body>

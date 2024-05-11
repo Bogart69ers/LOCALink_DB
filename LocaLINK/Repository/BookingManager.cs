@@ -42,11 +42,14 @@ namespace LocaLINK.Repository
 
         }
 
-        public ErrorCode UpdateBookingStatus(Booking status, ref String errMsg)
+        public ErrorCode UpdateBookingStatus(Booking st, ref String errMsg)
         {
-            return _book.Update(status.booking_id, status, out errMsg);
+            return _book.Update(st.booking_id, st, out errMsg);
         }
-        
+        public Booking GetUserCustomerBookingByUserId(int booking_id)
+        {
+            return _book._table.Where(m => m.booking_id == booking_id).FirstOrDefault();
+        }
 
         internal ErrorCode CreateBookingByUserId(Booking booking, ref string errorMessage)
         {

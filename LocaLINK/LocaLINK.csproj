@@ -190,11 +190,14 @@
     <Content Include="assets\bootstrap\css\bootstrap-reboot.min.css" />
     <Content Include="assets\bootstrap\css\bootstrap.min.css" />
     <Content Include="assets\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="assets\css\tailwind.css" />
+    <Content Include="assets\css\tailwind.output.css" />
     <Content Include="assets\dropdown\css\style.css" />
     <Content Include="assets\dropdown\js\navbar-dropdown.js" />
     <Content Include="assets\formoid\formoid.min.js" />
     <Content Include="assets\imageloaded\imagesloaded.pkgd.min.js" />
     <Content Include="assets\images\327902782_5881112508670425_939493048084412230_n.jpg" />
+    <Content Include="assets\images\423422484_742093807859588_180377772690653095_n %281%29.png" />
     <Content Include="assets\images\427711099_1287159432686634_3947921874142247345_n.jpg" />
     <Content Include="assets\images\430007298_1800677873731182_1481824453091159984_n.png" />
     <Content Include="assets\images\431791036_1505998206648976_5915917117067055049_n.jpg" />
@@ -224,6 +227,22 @@
     <Content Include="assets\images\photo-1651044450619-5ce74d316987.jpeg" />
     <Content Include="assets\images\photo-1681075401974-907cc62a4373.jpeg" />
     <Content Include="assets\images\photo-1694026307715-0d3709e69adf.jpeg" />
+    <Content Include="assets\img\create-account-office-dark.jpeg" />
+    <Content Include="assets\img\create-account-office.jpeg" />
+    <Content Include="assets\img\dashboard.png" />
+    <Content Include="assets\img\forgot-password-office-dark.jpeg" />
+    <Content Include="assets\img\forgot-password-office.jpeg" />
+    <Content Include="assets\img\github.svg" />
+    <Content Include="assets\img\login-office-dark.jpeg" />
+    <Content Include="assets\img\login-office.jpeg" />
+    <Content Include="assets\img\twitter.svg" />
+    <Content Include="assets\js\charts-bars.js" />
+    <Content Include="assets\js\charts-lines.js" />
+    <Content Include="assets\js\charts-pie.js" />
+    <Content Include="assets\js\focus-trap.js" />
+    <Content Include="assets\js\init-alpine.js" />
+    <Content Include="assets\js\postcss.config.js" />
+    <Content Include="assets\js\tailwind.config.js" />
     <Content Include="assets\login\animate.css" />
     <Content Include="assets\login\bootstrap-grid.css" />
     <Content Include="assets\login\bootstrap-grid.min.css" />
@@ -298,6 +317,7 @@
     <Content Include="scripts\jquery.validate.min.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="scripts\vue.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -367,7 +387,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="assets\socicon\fonts\socicon.eot" />
@@ -456,10 +475,13 @@
     <Content Include="Views\Home\SignUp.cshtml" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Verify.cshtml" />
-    <Content Include="Views\Home\Booking.cshtml" />
     <Content Include="Views\Home\MyProfile.cshtml" />
     <Content Include="Views\Home\Admin.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Worker.cshtml" />
+    <Content Include="Views\Home\Booking.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

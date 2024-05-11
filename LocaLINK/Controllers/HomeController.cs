@@ -37,42 +37,40 @@ namespace LocaLINK.Controllers
         }
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult Login(String username, String password, String ReturnUrl)
+        public ActionResult Login(string username, string password, string returnUrl)
         {
             if (_userManager.Login(username, password, ref ErrorMessage) == ErrorCode.Success)
             {
                 var user = _userManager.GetUserByUsername(username);
 
-                if (user.status != (Int32)status.Active)
+                if (user.status != (int)status.Active)
                 {
                     TempData["username"] = username;
                     return RedirectToAction("Verify");
                 }
-                // 
-                FormsAuthentication.SetAuthCookie(username, false);
-                //
-                if (!String.IsNullOrEmpty(ReturnUrl))
-                    return Redirect(ReturnUrl);
 
+                // Set authentication cookie
+                FormsAuthentication.SetAuthCookie(username, false);
+
+                // Redirect user based on role
                 switch (user.User_Role.rolename)
                 {
                     case Constant.Role_User:
-
                         return RedirectToAction("Booking");
                     case Constant.Role_Worker:
-
                         return RedirectToAction("Worker");
                     case Constant.Role_Admin:
-
                         return RedirectToAction("Admin");
                     default:
                         return RedirectToAction("Index");
                 }
             }
-            ViewBag.Error = ErrorMessage;
 
+            // If login fails, display error message
+            ViewBag.Error = ErrorMessage;
             return View();
         }
+
         [AllowAnonymous]
         public ActionResult Verify()
         {
@@ -154,7 +152,7 @@ namespace LocaLINK.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index");
+            return RedirectToAction("Login");
         }
         [AllowAnonymous]
         public ActionResult MyProfile()
@@ -227,16 +225,52 @@ namespace LocaLINK.Controllers
             return View(allBookings);
         }
 
+        [AllowAnonymous]
         [HttpPost]
-        public ActionResult UpdateStatus(string booking_id)
+        public ActionResult Worker(int? id)
         {
-            var bookstatus = _bookMng.GetUserCustomerByUserId(booking_id);
+            if (id.HasValue)
+            {
+                TempData["customer_id"] = id;
 
-            bookstatus.status = (Int32)BookStatus.Confirmed;
-            _bookMng.UpdateBookingStatus(bookstatus, ref ErrorMessage);
+                // Retrieve booking by customer_id
+                var bookingManager = new BookingManager();
+                var book = bookingManager.GetUserCustomerBookingByUserId(id.Value);
 
-            return View(bookstatus);
+                if (book != null)
+                {
+                    // Update booking status to Confirmed
+                    book.status = (int)BookStatus.Confirmed; // Cast to int
+                    string errorMessage = null;
+                    var updateStatusResult = bookingManager.UpdateBookingStatus(book, ref errorMessage);
+
+                    if (updateStatusResult == ErrorCode.Success)
+                    {
+                        // Status updated successfully
+                        ViewBag.SuccessMessage = "Booking status updated successfully.";
+                    }
+                    else
+                    {
+                        // Handle case where there's an error updating the booking status
+                        ViewBag.ErrorMessage = "An error occurred while updating the booking status.";
+                    }
+                }
+                else
+                {
+                    // Handle case where booking is not found
+                    ViewBag.ErrorMessage = "Booking not found.";
+                }
+            }
+            else
+            {
+                // Handle case where id parameter is null
+                ViewBag.ErrorMessage = "Invalid customer id.";
+            }
+
+            // Redirect to the Worker action to reload the map and pins
+            return RedirectToAction("Worker");
         }
+
         [AllowAnonymous]
         public ActionResult Admin()
         {
@@ -247,6 +281,15 @@ namespace LocaLINK.Controllers
             return View(allBookings);
         }
         
+        [AllowAnonymous]
+        public ActionResult Dashboard()
+        {
+            var bookingManager = new BookingManager();
+
+            var allBookings = bookingManager.GetAllBookings();
+
+            return View(allBookings);
+        }
 
     }
 }
