@@ -60,7 +60,7 @@ namespace LocaLINK.Controllers
                     case Constant.Role_Worker:
                         return RedirectToAction("Worker");
                     case Constant.Role_Admin:
-                        return RedirectToAction("Admin");
+                        return RedirectToAction("Dashboard");
                     default:
                         return RedirectToAction("Index");
                 }
@@ -216,6 +216,16 @@ namespace LocaLINK.Controllers
 
         }
         [AllowAnonymous]
+        public ActionResult Progress()
+        {
+            IsUserLoggedSession();
+            var user = _userManager.GetUserByUserId(UserId);
+            ViewBag.currentuser = user.userId;// Fetch bookings for the current user
+            List<Booking> bookinglist = _bookMng.GetUserBookingByUserId(user.userId);
+            return View(bookinglist);
+        }
+        
+        [AllowAnonymous]
         public ActionResult Worker()
         {
             var bookingManager = new BookingManager();
@@ -270,16 +280,6 @@ namespace LocaLINK.Controllers
             // Redirect to the Worker action to reload the map and pins
             return RedirectToAction("Worker");
         }
-
-        [AllowAnonymous]
-        public ActionResult Admin()
-        {
-            var bookingManager = new BookingManager();
-
-            var allBookings = bookingManager.GetAllBookings();
-
-            return View(allBookings);
-        }
         
         [AllowAnonymous]
         public ActionResult Dashboard()
@@ -300,12 +300,65 @@ namespace LocaLINK.Controllers
 
             return View(alluser);
         }
-
+        
         [AllowAnonymous]
-        public ActionResult ManageAccount()
+        public ActionResult Edit(int id)
         {
-            return View();
+            IsUserLoggedSession();
+
+            var user = _userManager.RetrieveData(id, ref ErrorMessage);
+
+            ViewBag.Role = Utilities.ListRole;
+            return View(user);
+        }
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult Edit(User_Account ua, int id)
+        {
+            ViewBag.Role = Utilities.ListRole;
+
+            var user = _userManager.GetUserById(id);
+
+            if(_userManager.UpdateUser(ua, ref ErrorMessage) == ErrorCode.Error)
+            {
+                ModelState.AddModelError(String.Empty, ErrorMessage);
+                return View(ua);
+            }
+            TempData["Message"] = $"User Account {ErrorMessage}!";
+            return View(ua);
         }
 
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            string errorMSg;
+
+            var del = _userAcc.Delete(id, out errorMSg);
+            if (del == ErrorCode.Success)
+            {
+                TempData["SuccessMessage"] = $"Account successfully deleted!";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Failed to delete account: " + errorMSg;
+            }
+
+            return RedirectToAction("UserAccounts", new { deletedSuccessfully = del == ErrorCode.Success });
+        }
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult cancelBooking(int booking_id)
+        {
+            var book = _bookMng.GetbookId(booking_id);
+            if (book != null)
+            {
+                book.status = 3;
+                _bookMng.UpdateBookingStatus(book, ref ErrorMessage);
+                return Json(new { success = true });
+            }
+            return Json(new {success = false });
+        }
+        
     }
 }

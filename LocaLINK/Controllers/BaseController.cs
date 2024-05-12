@@ -14,6 +14,7 @@ namespace LocaLINK.Controllers
         public UserManager _userManager;
         public BookingManager _bookMng;
         public ServiceManager _serManager;
+        public BaseRepository<User_Account> _userAcc;
         
         public String Username { get { return User.Identity.Name; } }
         public String UserId { get { return _userManager.GetUserByUsername(Username).userId; } }
@@ -24,6 +25,7 @@ namespace LocaLINK.Controllers
             _userManager = new UserManager();
             _bookMng = new BookingManager();
             _serManager = new ServiceManager();
+            _userAcc = new BaseRepository<User_Account>();
 
         }
         public void IsUserLoggedSession()

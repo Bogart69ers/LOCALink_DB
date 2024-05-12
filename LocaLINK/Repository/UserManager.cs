@@ -34,6 +34,11 @@ namespace LocaLINK.Repository
         {
             return _userAcc._table.Where(m => m.email == email).FirstOrDefault();
         }
+        public User_Account RetrieveData(int id, ref String err)
+        {
+            var user = GetUserById(id);
+            return GetUserByUserId(user.userId);
+        }
         public ErrorCode Login(String username, String password, ref String errMsg)
         {
             var userSignIn = GetUserByUsername(username);

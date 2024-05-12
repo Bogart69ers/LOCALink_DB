@@ -37,6 +37,7 @@ namespace LocaLINK.Utils
         Pending,
         Confirmed,
         InProgress,
+        Canceled,
         Done
     }
 

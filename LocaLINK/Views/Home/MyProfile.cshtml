@@ -5,6 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success" style="background-color: #d1e7dd; color: #155724; border-color: #c3e6cb;">
+        @TempData["Message"]
+    </div>
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,6 +34,7 @@
     <link rel="stylesheet" type="text/css" href="/assets/login/main.css">
     <!--===============================================================================================-->
 </head>
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()

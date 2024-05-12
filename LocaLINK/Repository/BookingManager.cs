@@ -27,6 +27,11 @@ namespace LocaLINK.Repository
             return _book._table.Where(m => m.customer_id == customer_id && m.status == (Int32)BookStatus.Pending).ToList();
         }
 
+        public List<Booking> GetUserBookingByUserId(string customer_id)
+        {
+            return _book._table.Where(m => m.customer_id == customer_id).ToList();
+        }
+
         public ErrorCode CreateBookingService(Booking bookingnm, string username, ref string errMsg)
         {
             var userinf = _userMgr.GetUserInfoByUsername(username);
@@ -45,6 +50,10 @@ namespace LocaLINK.Repository
         public ErrorCode UpdateBookingStatus(Booking st, ref String errMsg)
         {
             return _book.Update(st.booking_id, st, out errMsg);
+        }
+        public Booking GetbookId(int booking_id)
+        {
+            return _book.Get(booking_id);
         }
         public Booking GetUserCustomerBookingByUserId(int booking_id)
         {
