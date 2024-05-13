@@ -233,6 +233,9 @@
                             <div class="col-md col-sm-12 form-group mb-3" data-for="price" hidden>
                                 <input type="text" name="status" placeholder="Status" data-form-field="status" class="form-control" value="" id="price" readonly="readonly">
                             </div>
+                            <div class="col-md col-sm-12 form-group mb-3" data-for="customer_id" hidden>
+                                <input type="hidden" id="currentUserId" value="@User.Identity.Name" />
+                            </div>
                             <div id="map" style="height: 400px; border-radius:30px;"></div>
                             <div class="col-lg-12 col-md-12 col-sm-12 align-center mbr-section-btn">
                                 <button type="button" onclick="bookConfirmation()" id="confirmButton" class="btn btn-primary display-7">Confirm Booking</button>

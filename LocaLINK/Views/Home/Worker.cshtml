@@ -119,13 +119,13 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
                                 <li class="nav-item">
-                                    <a class="nav-link link text-black display-4" href="#about-us-15-uadY7asi4M">Orders</a>
+                                    <a class="nav-link link text-black display-4" href="/Home/Worker">Orders</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link link text-black display-4" href="#team-1-uadY7as3c7">Customers</a>
+                                    <a class="nav-link link text-black display-4" href="#listofbookings">Customers</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link link text-black display-4" href="#listofbookings">Booking Progress</a>
+                                    <a class="nav-link link text-black display-4" href="/Home/ProgressWorker">Progress</a>
                                 </li>
                             </ul>
                         </div>
@@ -153,13 +153,13 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
                                 <li class="nav-item">
-                                    <a class="nav-link link text-black display-4" href="#about-us-15-uadY7asi4M">Orders</a>
+                                    <a class="nav-link link text-black display-4" href="/Home/Worker">Orders</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link link text-black display-4" href="#listofbookings">Customers</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link link text-black display-4" href="#listofbookings">Booking Progress</a>
+                                    <a class="nav-link link text-black display-4" href="/Home/ProgressWorker">Progress</a>
                                 </li>
                             </ul>
                         </div>
@@ -208,6 +208,7 @@
             <button type="button" class="popup-btn" onclick="bookingConfirmation()">Accept Request</button>
             <input type="hidden" id="bookingIdInput" name="id" value="" />
             <input type="submit" id="submitButton" style="display: none;" />
+            <input type="hidden" id="workerIdInput" name="worker_id" value="" />
         </div>
         <div id="listofbookings" style="display: none; left: -300px;">
             <!-- Step 1: Initially hidden and positioned to the left -->
@@ -323,7 +324,9 @@
                 if (result.isConfirmed) {
                     // Set the booking ID to the hidden input field
                     var bookingId = document.getElementById('booking_id').value;
+                    var currentUserId = '@User.Identity.Name';
                     document.getElementById('bookingIdInput').value = bookingId;
+                    document.getElementById('workerIdInput').value = currentUserId; // Set the worker_id
                     // Click the submit button
                     document.getElementById('submitButton').click();
                 }

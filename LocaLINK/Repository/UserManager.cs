@@ -22,6 +22,39 @@ namespace LocaLINK.Repository
         {
             return _userAcc.Get(Id);
         }
+        public ErrorCode UpdatePassword(User_Account user, string newPassword)
+        {
+            try
+            {
+                // Retrieve the user from the database
+                var existingUser = _userAcc.Get(user.id);
+                if (existingUser == null)
+                {
+                    return ErrorCode.Error;
+                }
+
+                // Update the password
+                existingUser.password = newPassword;
+
+                // Save changes to the database
+                var errMsg = "";
+                var result = _userAcc.Update(existingUser.id, existingUser, out errMsg);
+                if (result != ErrorCode.Success)
+                {
+                    return ErrorCode.Error;
+                }
+
+                return ErrorCode.Success;
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions
+                // Log the exception for debugging purposes
+                // You can customize this based on your logging strategy
+                Console.WriteLine("Error updating password: " + ex.Message);
+                return ErrorCode.Error;
+            }
+        }
         public User_Account GetUserByUserId(String userId)
         {
             return _userAcc._table.Where(m => m.userId == userId).FirstOrDefault();

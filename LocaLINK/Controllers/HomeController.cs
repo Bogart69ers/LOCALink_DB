@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using System.Web.Security;
 
 namespace LocaLINK.Controllers
@@ -224,12 +225,12 @@ namespace LocaLINK.Controllers
             List<Booking> bookinglist = _bookMng.GetUserBookingByUserId(user.userId);
             return View(bookinglist);
         }
-        
+
         [AllowAnonymous]
         public ActionResult Worker()
         {
             var bookingManager = new BookingManager();
-            
+
             var allBookings = bookingManager.GetAllBookings();
 
             return View(allBookings);
@@ -241,18 +242,22 @@ namespace LocaLINK.Controllers
         {
             if (id.HasValue)
             {
-                TempData["customer_id"] = id;
-
-                // Retrieve booking by customer_id
+                // Retrieve booking by booking_id
                 var bookingManager = new BookingManager();
-                var book = bookingManager.GetUserCustomerBookingByUserId(id.Value);
+                var booking = bookingManager.GetBookingById(id.Value);
 
-                if (book != null)
+                if (booking != null)
                 {
                     // Update booking status to Confirmed
-                    book.status = (int)BookStatus.Confirmed; // Cast to int
+                    booking.status = (int)BookStatus.Confirmed;
+
+                    // Update worker_id with current user_id
+                    string currentUserId = _userManager.GetUserByUsername(Username).userId;
+                    booking.worker_id = currentUserId;
+
+                    // Save changes
                     string errorMessage = null;
-                    var updateStatusResult = bookingManager.UpdateBookingStatus(book, ref errorMessage);
+                    var updateStatusResult = bookingManager.UpdateBookingStatus(booking, ref errorMessage);
 
                     if (updateStatusResult == ErrorCode.Success)
                     {
@@ -261,7 +266,7 @@ namespace LocaLINK.Controllers
                     }
                     else
                     {
-                        // Handle case where there's an error updating the booking status
+                        // Handle error
                         ViewBag.ErrorMessage = "An error occurred while updating the booking status.";
                     }
                 }
@@ -274,13 +279,13 @@ namespace LocaLINK.Controllers
             else
             {
                 // Handle case where id parameter is null
-                ViewBag.ErrorMessage = "Invalid customer id.";
+                ViewBag.ErrorMessage = "Invalid booking id.";
             }
 
             // Redirect to the Worker action to reload the map and pins
             return RedirectToAction("Worker");
         }
-        
+
         [AllowAnonymous]
         public ActionResult Dashboard()
         {
@@ -300,7 +305,7 @@ namespace LocaLINK.Controllers
 
             return View(alluser);
         }
-        
+
         [AllowAnonymous]
         public ActionResult Edit(int id)
         {
@@ -319,7 +324,7 @@ namespace LocaLINK.Controllers
 
             var user = _userManager.GetUserById(id);
 
-            if(_userManager.UpdateUser(ua, ref ErrorMessage) == ErrorCode.Error)
+            if (_userManager.UpdateUser(ua, ref ErrorMessage) == ErrorCode.Error)
             {
                 ModelState.AddModelError(String.Empty, ErrorMessage);
                 return View(ua);
@@ -357,8 +362,160 @@ namespace LocaLINK.Controllers
                 _bookMng.UpdateBookingStatus(book, ref ErrorMessage);
                 return Json(new { success = true });
             }
-            return Json(new {success = false });
+            return Json(new { success = false });
         }
-        
+
+        [AllowAnonymous]
+        public ActionResult ProgressWorker()
+        {
+            IsUserLoggedSession();
+            var book = _userManager.GetUserByUserId(UserId);
+            ViewBag.Worker = book.userId;
+            List<Booking> booklist = _bookMng.GetUserBookingByUserId(book.userId);
+            return View(booklist);
+        }
+
+        [AllowAnonymous]
+        public ActionResult Reports()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult SignUpAdmin()
+        {
+            if (User.Identity.IsAuthenticated)
+                return RedirectToAction("Index");
+
+            ViewBag.Role = Utilities.ListRole;
+
+            return View();
+        }
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult SignUpAdmin(User_Account ua, string ConfirmPass)
+        {
+            if (!ua.password.Equals(ConfirmPass))
+            {
+                ModelState.AddModelError(String.Empty, "Password not match");
+                ViewBag.Role = Utilities.ListRole;
+                return View(ua);
+            }
+
+            if (_userManager.SignUp(ua, ref ErrorMessage) != ErrorCode.Success)
+            {
+                ModelState.AddModelError(String.Empty, ErrorMessage);
+
+                ViewBag.Role = Utilities.ListRole;
+                return View(ua);
+            }
+
+            var user = _userManager.GetUserByEmail(ua.email);
+            string verificationCode = ua.code;
+
+            string emailBody = $"Your verification code is: {verificationCode}";
+            string errorMessage = "";
+
+            var mailManager = new MailManager();
+            bool emailSent = mailManager.SendEmail(ua.email, "Verification Code", emailBody, ref errorMessage);
+
+            if (!emailSent)
+            {
+                ModelState.AddModelError(String.Empty, errorMessage);
+                ViewBag.Role = Utilities.ListRole;
+                return View(ua);
+            }
+            TempData["username"] = ua.username;
+            return RedirectToAction("SignUpAdmin");
+        }
+        [AllowAnonymous]
+        public ActionResult ForgotPass(string email, string code, string newPassword, User_Account ua)
+        {
+            // Check if the cdbutton was clicked
+
+            if (!string.IsNullOrEmpty(Request.Form["cdbutton"]))
+            {
+                // Extract email from the model
+                string uemail = ua.email;
+
+                if (string.IsNullOrEmpty(uemail))
+                {
+                    // Handle case where email is not provided
+                    ViewBag.Error = "Email is required.";
+                    return View();
+                }
+
+                var user = _userManager.GetUserByEmail(uemail);
+
+                if (user == null)
+                {
+                    // Handle case where user with the provided email is not found
+                    ViewBag.Error = "User with the provided email does not exist.";
+                    return View();
+                }
+
+                // Retrieve the fixed verification code from the user's record in the database
+                string verificationCode = user.code;
+
+                // Send email with the fixed verification code
+                string emailBody = $"Your verification code is: {verificationCode}";
+                string errorMessage = "";
+                var mailManager = new MailManager();
+                bool emailSent = mailManager.SendEmail(email, "Verification Code", emailBody, ref errorMessage);
+                if (!emailSent)
+                {
+                    // Handle case where email sending fails
+                    ViewBag.Error = errorMessage;
+                    return View();
+                }
+
+
+                Session["VerificationCode"] = verificationCode;
+                return RedirectToAction("ForgotPass");
+
+            }
+
+
+            if (!string.IsNullOrEmpty(Request.Form["confirmButton"]))
+            {
+                // Compare the entered code with the stored verification code
+                if (code != Session["VerificationCode"]?.ToString())
+                {
+                    // Handle case where the entered code is incorrect
+                    ViewBag.Error = "Incorrect verification code.";
+                    return View();
+                }
+
+                // Logic to update the password in the database
+                var user = _userManager.GetUserByEmail(email);
+                if (user == null)
+                {
+                    ViewBag.Error = "User not found.";
+                    return View();
+                }
+
+                // Assuming you have a method like UpdatePassword in your user manager
+                var passwordUpdated = _userManager.UpdatePassword(user, newPassword);
+                if (passwordUpdated != ErrorCode.Success)
+                {
+                    ViewBag.Error = "Failed to update password.";
+                    return View();
+                }
+                // After updating the password, clear the session
+                Session.Remove("VerificationCode");
+
+                // Redirect to a success page or another appropriate action
+                return RedirectToAction("PasswordUpdated");
+
+            }
+
+
+            // Return the view for other cases (e.g., initial load or form submission without clicking cdbutton)
+
+
+
+            // Return the view for other cases (e.g., initial load or form submission without clicking cdbutton)
+            return View();
+        }
     }
 }

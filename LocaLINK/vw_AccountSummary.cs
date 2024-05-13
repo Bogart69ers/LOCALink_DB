@@ -12,14 +12,9 @@ namespace LocaLINK
     using System;
     using System.Collections.Generic;
     
-    public partial class BookingDetails
+    public partial class vw_AccountSummary
     {
-        public int id { get; set; }
-        public Nullable<int> booking_id { get; set; }
-        public Nullable<int> service_id { get; set; }
-        public string Price { get; set; }
-    
-        public virtual Booking Booking { get; set; }
-        public virtual Service_Provider Service_Provider { get; set; }
+        public string Totals { get; set; }
+        public Nullable<int> Count { get; set; }
     }
 }

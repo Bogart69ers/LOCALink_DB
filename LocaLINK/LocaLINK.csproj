@@ -79,6 +79,10 @@
       <HintPath>..\packages\Microsoft.ApplicationInsights.2.0.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.4\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -325,9 +329,6 @@
     <Compile Include="Booking.cs">
       <DependentUpon>locaLINK.tt</DependentUpon>
     </Compile>
-    <Compile Include="BookingDetails.cs">
-      <DependentUpon>locaLINK.tt</DependentUpon>
-    </Compile>
     <Compile Include="Contracts\IBaseController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -357,9 +358,6 @@
     <Compile Include="Services.cs">
       <DependentUpon>locaLINK.tt</DependentUpon>
     </Compile>
-    <Compile Include="Service_Provider.cs">
-      <DependentUpon>locaLINK.tt</DependentUpon>
-    </Compile>
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>locaLINK.tt</DependentUpon>
     </Compile>
@@ -377,6 +375,9 @@
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\UserManager.cs" />
     <Compile Include="Utils\Utilities.cs" />
+    <Compile Include="vw_AccountSummary.cs">
+      <DependentUpon>locaLINK.tt</DependentUpon>
+    </Compile>
     <Compile Include="vw_accRole.cs">
       <DependentUpon>locaLINK.tt</DependentUpon>
     </Compile>
@@ -485,7 +486,11 @@
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Home\Delete.cshtml" />
     <Content Include="Views\Home\Progress.cshtml" />
-    <Content Include="Views\Home\cancelBooking.cshtml" />
+    <Content Include="Views\Home\ProgressWorker.cshtml" />
+    <Content Include="Views\Shared\_UserLayout.cshtml" />
+    <Content Include="Views\Home\Reports.cshtml" />
+    <Content Include="Views\Home\SignUpAdmin.cshtml" />
+    <Content Include="Views\Home\ForgotPass.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

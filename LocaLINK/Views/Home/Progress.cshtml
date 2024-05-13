@@ -240,26 +240,57 @@
     <br />
     <br />
     <br />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
-        function cancelBooking(booking_id) {
-            $.ajax({
-                url: '/Home/cancelBooking',
-                type: 'POST',
-                data: { booking_id: booking_id },
-                success: function (response) {
-                    if (response.success) {
-                        location.reload();
+    function cancelBooking(booking_id) {
+        // Display confirmation dialog
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You will not be able to revert this!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, cancel it!',
+            cancelButtonText: 'No, keep it'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // User confirmed, proceed with cancellation
+                fetch('/Home/cancelBooking', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ booking_id: booking_id }),
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
                     } else {
-                        alert('Failed to cancel booking!');
+                        throw new Error('Failed to cancel booking!');
                     }
-                },
-                error: function (xhr, status, error) {
-                    console.error(xhr.responseText);
-                    alert('Failed to cancel booking!');
-                }
-            });
-        }
+                })
+                .then(data => {
+                    if (data.success) {
+                        // Update UI or display a success message
+                        Swal.fire('Cancelled!', 'The booking has been cancelled.', 'success');
+                        // Optionally, reload the page after a delay
+                        setTimeout(() => {
+                            location.reload();
+                        }, 2000);
+                    } else {
+                        Swal.fire('Error!', 'Failed to cancel booking.', 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                    Swal.fire('Error!', 'Failed to cancel booking.', 'error');
+                });
+            }
+        });
+    }
     </script>
+
 
 
 </body>
