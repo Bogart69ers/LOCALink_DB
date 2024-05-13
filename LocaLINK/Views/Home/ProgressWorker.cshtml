@@ -228,8 +228,9 @@
                                 </td>
                                 <td class="px-4 py-3">
                                     <div class="flex items-center space-x-4 text-sm">
-                                        <button type="button" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray cancel-button" onclick="cancelBooking(@item.booking_id)">Cancel</button>
-                                    </div>
+                                        <button type="button" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray cancel-button" onclick="inProgressBooking(@item.booking_id)" {{if item.status === 2}} disabled{{/if}}>In Progress</button>
+                                        <button type="button" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray cancel-button" onclick="DoneBooking(@item.booking_id)" {{if item.status === 2 || item.status === 4}} disabled{{/if}}>Done</button>
+                                   </div>
                                 </td>
                             </tr>
                                         }
@@ -247,7 +248,7 @@
     <br />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
-    function cancelBooking(booking_id) {
+        function inProgressBooking(booking_id) {
         // Display confirmation dialog
         Swal.fire({
             title: 'Are you sure?',
@@ -261,7 +262,7 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 // User confirmed, proceed with cancellation
-                fetch('/Home/ProgressWorker', {
+                fetch('/Home/inProgressBooking', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -272,24 +273,73 @@
                     if (response.ok) {
                         return response.json();
                     } else {
-                        throw new Error('Failed to cancel booking!');
+                        throw new Error('Failed to change status booking!');
                     }
                 })
                 .then(data => {
                     if (data.success) {
                         // Update UI or display a success message
-                        Swal.fire('Cancelled!', 'The booking has been cancelled.', 'success');
+                        Swal.fire('In Progress!', 'The booking is in progress.', 'success');
                         // Optionally, reload the page after a delay
                         setTimeout(() => {
                             location.reload();
                         }, 2000);
                     } else {
-                        Swal.fire('Error!', 'Failed to cancel booking.', 'error');
+                        Swal.fire('Error!', 'Failed to change status booking.', 'error');
                     }
                 })
                 .catch(error => {
                     console.error(error);
-                    Swal.fire('Error!', 'Failed to cancel booking.', 'error');
+                    Swal.fire('Error!', 'Failed to change status booking.', 'error');
+                });
+            }
+        });
+    }
+    </script>
+    <script>
+        function DoneBooking(booking_id) {
+        // Display confirmation dialog
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You will not be able to revert this!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes!',
+            cancelButtonText: 'No, keep it'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // User confirmed, proceed with cancellation
+                fetch('/Home/DoneBooking', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ booking_id: booking_id }),
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Failed to change status booking!');
+                    }
+                })
+                .then(data => {
+                    if (data.success) {
+                        // Update UI or display a success message
+                        Swal.fire('Done!', 'The booking is done.', 'success');
+                        // Optionally, reload the page after a delay
+                        setTimeout(() => {
+                            location.reload();
+                        }, 2000);
+                    } else {
+                        Swal.fire('Error!', 'Failed to change status booking.', 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                    Swal.fire('Error!', 'Failed to change status booking.', 'error');
                 });
             }
         });

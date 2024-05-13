@@ -78,15 +78,6 @@
           <Property Name="rolename" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'LOCALink.dbo.vw_AccountSummary' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="vw_AccountSummary">
-          <Key>
-            <PropertyRef Name="Totals" />
-          </Key>
-          <Property Name="Totals" Type="varchar" MaxLength="17" Nullable="false" />
-          <Property Name="Count" Type="int" />
-        </EntityType>
-        <!--Errors Found During Generation:
 warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vw_accRole">
           <Key>
@@ -97,7 +88,9 @@ warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary k
           <Property Name="rolename" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Booking_Services">
-          <End Role="Services" Type="Self.Services" Multiplicity="0..1" />
+          <End Role="Services" Type="Self.Services" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Services">
@@ -139,12 +132,6 @@ warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary k
           <EntitySet Name="User_Account" EntityType="Self.User_Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User_Info" EntityType="Self.User_Info" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User_Role" EntityType="Self.User_Role" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="vw_AccountSummary" EntityType="Self.vw_AccountSummary" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [vw_AccountSummary].[Totals] AS [Totals], 
-    [vw_AccountSummary].[Count] AS [Count]
-    FROM [dbo].[vw_AccountSummary] AS [vw_AccountSummary]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="vw_accRole" EntityType="Self.vw_accRole" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [vw_accRole].[id] AS [id], 
@@ -176,7 +163,6 @@ warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary k
           <EntitySet Name="User_Account" EntityType="LOCALinkModel.User_Account" />
           <EntitySet Name="User_Info" EntityType="LOCALinkModel.User_Info" />
           <EntitySet Name="User_Role" EntityType="LOCALinkModel.User_Role" />
-          <EntitySet Name="vw_AccountSummary" EntityType="LOCALinkModel.vw_AccountSummary" />
           <EntitySet Name="vw_accRole" EntityType="LOCALinkModel.vw_accRole" />
           <AssociationSet Name="FK_Booking_Services" Association="LOCALinkModel.FK_Booking_Services">
             <End Role="Services" EntitySet="Services" />
@@ -269,13 +255,6 @@ warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary k
           <NavigationProperty Name="User_Role1" Relationship="LOCALinkModel.FK_User_Category_User_Category1" FromRole="User_Role" ToRole="User_Role1" />
           <NavigationProperty Name="User_Role2" Relationship="LOCALinkModel.FK_User_Category_User_Category1" FromRole="User_Role1" ToRole="User_Role" />
         </EntityType>
-        <EntityType Name="vw_AccountSummary">
-          <Key>
-            <PropertyRef Name="Totals" />
-          </Key>
-          <Property Name="Totals" Type="String" Nullable="false" MaxLength="17" FixedLength="false" Unicode="false" />
-          <Property Name="Count" Type="Int32" />
-        </EntityType>
         <EntityType Name="vw_accRole">
           <Key>
             <PropertyRef Name="id" />
@@ -285,7 +264,9 @@ warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary k
           <Property Name="rolename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Booking_Services">
-          <End Type="LOCALinkModel.Services" Role="Services" Multiplicity="0..1" />
+          <End Type="LOCALinkModel.Services" Role="Services" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="LOCALinkModel.Booking" Role="Booking" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Services">
@@ -401,14 +382,6 @@ warning 6002: The table/view 'LOCALink.dbo.vw_accRole' does not have a primary k
               <MappingFragment StoreEntitySet="User_Role">
                 <ScalarProperty Name="rolename" ColumnName="rolename" />
                 <ScalarProperty Name="roleId" ColumnName="roleId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="vw_AccountSummary">
-            <EntityTypeMapping TypeName="LOCALinkModel.vw_AccountSummary">
-              <MappingFragment StoreEntitySet="vw_AccountSummary">
-                <ScalarProperty Name="Count" ColumnName="Count" />
-                <ScalarProperty Name="Totals" ColumnName="Totals" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

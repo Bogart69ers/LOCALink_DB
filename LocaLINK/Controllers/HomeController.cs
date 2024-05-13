@@ -14,6 +14,13 @@ namespace LocaLINK.Controllers
     [Authorize(Roles = "User, Worker")]
     public class HomeController : BaseController
     {
+        private LOCALinkEntities3 _db;
+
+        public HomeController()
+        {
+            _db = new LOCALinkEntities3();
+        }
+
         [AllowAnonymous]
         // GET: Home
         public ActionResult Index()
@@ -293,6 +300,16 @@ namespace LocaLINK.Controllers
 
             var allBookings = bookingManager.GetAllBookings();
 
+            int totalbookings = allBookings.Count();
+            int pendingtransaction = allBookings.Count(u => u.status == 0);
+            int canceltransaction = allBookings.Count(u => u.status == 3);
+            int donetransaction = allBookings.Count(u => u.status == 4);
+
+            ViewBag.TotalBooking = totalbookings;
+            ViewBag.PendingTransaction = pendingtransaction;
+            ViewBag.CancelTransaction = canceltransaction;
+            ViewBag.DoneTransaction = donetransaction;
+
             return View(allBookings);
         }
 
@@ -300,8 +317,19 @@ namespace LocaLINK.Controllers
         public ActionResult UserAccounts()
         {
             var user = new UserManager();
-
             var alluser = user.GetAllBUserInfo();
+
+            // Calculate the total number of accounts
+            int totalAccounts = alluser.Count();
+            int totalInactiveAccounts = alluser.Count(u => u.status == 0);
+            int totalActiveAccounts = alluser.Count(u => u.status == 1);
+
+            // Pass the counts to the view using ViewBag
+            ViewBag.TotalInactiveAccounts = totalInactiveAccounts;
+            ViewBag.TotalActiveAccounts = totalActiveAccounts;
+
+            // Pass the totalAccounts value to the view using ViewBag
+            ViewBag.TotalAccounts = totalAccounts;
 
             return View(alluser);
         }
@@ -371,14 +399,43 @@ namespace LocaLINK.Controllers
             IsUserLoggedSession();
             var book = _userManager.GetUserByUserId(UserId);
             ViewBag.Worker = book.userId;
-            List<Booking> booklist = _bookMng.GetUserBookingByUserId(book.userId);
+            List<Booking> booklist = _bookMng.GetBookingsByWorkerId(book.userId);
             return View(booklist);
         }
 
         [AllowAnonymous]
         public ActionResult Reports()
         {
-            return View();
+            var user = new BookingManager();
+            var allBookings = user.GetAllBookings(); // Assuming you have a method to get all bookings
+
+            // Get the current date
+            var currentDate = DateTime.Today;
+
+            int totalBookings = allBookings.Count();
+
+            // Calculate the start and end dates for the monthly, weekly, and daily counts
+            var startDateMonthly = new DateTime(currentDate.Year, currentDate.Month, 1);
+            var endDateMonthly = startDateMonthly.AddMonths(1).AddDays(-1);
+
+            var startDateWeekly = currentDate.AddDays(-(int)currentDate.DayOfWeek);
+            var endDateWeekly = startDateWeekly.AddDays(6);
+
+            var startDateDaily = currentDate.Date;
+            var endDateDaily = startDateDaily.AddDays(1).AddSeconds(-1);
+
+            // Count bookings for each period
+            int totalMonthlyBookings = allBookings.Count(b => b.booking_date >= startDateMonthly && b.booking_date <= endDateMonthly);
+            int totalWeeklyBookings = allBookings.Count(b => b.booking_date >= startDateWeekly && b.booking_date <= endDateWeekly);
+            int totalDailyBookings = allBookings.Count(b => b.booking_date >= startDateDaily && b.booking_date <= endDateDaily);
+
+            // Pass the counts to the view using ViewBag
+            ViewBag.TotalMonthlyBookings = totalMonthlyBookings;
+            ViewBag.TotalWeeklyBookings = totalWeeklyBookings;
+            ViewBag.TotalDailyBookings = totalDailyBookings;
+            ViewBag.TotalBookings = totalBookings;
+
+            return View(allBookings);
         }
 
         [AllowAnonymous]
@@ -516,6 +573,34 @@ namespace LocaLINK.Controllers
 
             // Return the view for other cases (e.g., initial load or form submission without clicking cdbutton)
             return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult inProgressBooking(int booking_id)
+        {
+            var book = _bookMng.GetbookId(booking_id);
+            if (book != null)
+            {
+                book.status = 2;
+                _bookMng.UpdateBookingStatus(book, ref ErrorMessage);
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult DoneBooking(int booking_id)
+        {
+            var book = _bookMng.GetbookId(booking_id);
+            if (book != null)
+            {
+                book.status = 4;
+                _bookMng.UpdateBookingStatus(book, ref ErrorMessage);
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
         }
     }
 }

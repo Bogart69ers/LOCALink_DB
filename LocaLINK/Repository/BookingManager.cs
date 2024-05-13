@@ -36,7 +36,7 @@ namespace LocaLINK.Repository
 
         public List<Booking> GetUserBookingByUserId(string customer_id)
         {
-            return _book._table.Where(m => m.worker_id == customer_id).ToList();
+            return _book._table.Where(m => m.customer_id == customer_id).ToList();
         }
 
         public List<Booking> GetConfirmedBookings(string customer_id)

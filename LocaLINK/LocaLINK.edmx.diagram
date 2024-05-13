@@ -11,8 +11,7 @@
         <EntityTypeShape EntityType="LOCALinkModel.User_Account" Width="1.5" PointX="3" PointY="1" />
         <EntityTypeShape EntityType="LOCALinkModel.User_Info" Width="1.5" PointX="2.75" PointY="5.75" />
         <EntityTypeShape EntityType="LOCALinkModel.User_Role" Width="1.5" PointX="0.75" PointY="1.5" />
-        <EntityTypeShape EntityType="LOCALinkModel.vw_AccountSummary" Width="1.5" PointX="4.75" PointY="5.75" />
-        <EntityTypeShape EntityType="LOCALinkModel.vw_accRole" Width="1.5" PointX="6.75" PointY="5.75" />
+        <EntityTypeShape EntityType="LOCALinkModel.vw_accRole" Width="1.5" PointX="4.75" PointY="5.75" />
         <AssociationConnector Association="LOCALinkModel.FK_Booking_Services" />
         <AssociationConnector Association="LOCALinkModel.FK_User_Account_User_Role" />
         <AssociationConnector Association="LOCALinkModel.FK_User_Category_User_Category1" />

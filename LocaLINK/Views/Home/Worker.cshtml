@@ -224,7 +224,8 @@
                         <b>Customer Name:</b> @booking.name<br>
                         <b>Date:</b> @(booking.booking_date != null ? DateTime.Parse(booking.booking_date.ToString()).ToString("dd/MM/yyyy") : "")<br>
                         <b>Price:</b> @booking.total_price<br>
-                        <b>Phone Number:</b> @booking.contact<br><br>
+                        <b>Phone Number:</b> @booking.contact<br>
+                        <b>Service:</b> @(GetServiceName(booking.serviceId))<br><br>
                     </div>
                 }
             }
@@ -249,6 +250,7 @@
             "<b>Customer Name: </b>" + booking.name + "<br>" +
             "<b>Date: </b>" + formattedDate + "<br>" +
             "<b>Price:</b> " + booking.total_price + "<br>" +
+            "<b>Service:</b> " + booking.service + "<br>" +
             "<b>Phone Number: </b>" + booking.contact + "<br><br>";
 
         document.getElementById('detail-content').innerHTML = content;
