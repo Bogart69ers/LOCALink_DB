@@ -207,19 +207,19 @@
                                 <input type="hidden" name="customer_id" placeholder="Id" data-form-field="customer_id" class="form-control" value="@ViewBag.booking" readonly="readonly">
                             </div>
                             <div class="col-md col-sm-12 form-group mb-3" data-for="name">
-                                <input type="text" name="name" placeholder="Name" data-form-field="customer_id" class="form-control">
+                                <input type="text" name="name" placeholder="Name" data-form-field="customer_id" class="form-control" required>
                             </div>
                             <div class="col-md col-sm-12 form-group mb-3" data-for="contactnumber">
-                                <input type="number" name="contact" placeholder="Contact Number" data-form-field="email" class="form-control" value="" id="email-contact-form-2-uasfzUpiyP">
+                                <input type="number" name="contact" placeholder="Contact Number" data-form-field="email" class="form-control" value="" id="email-contact-form-2-uasfzUpiyP" required>
                             </div>
                             <div class="col-12 form-group mb-3" data-for="date">
-                                <input type="date" name="booking_date" placeholder="Date" data-form-field="date" class="form-control" value="" id="email-contact-form-2-uasfzUpiyP">
+                                <input type="date" name="booking_date" placeholder="Date" data-form-field="date" class="form-control" value="" id="email-contact-form-2-uasfzUpiyP" required>
                             </div>
                             <div class="col-12 form-group mb-3" data-for="service">
                                 @Html.DropDownList("service", (IEnumerable<SelectListItem>)ViewBag.Service, "Select Sevices", new { @class = "form-control", @id = "service", @required = true })
                             </div>
                             <div class="col-md col-sm-12 form-group mb-3" data-for="location">
-                                <input type="text" name="location" id="search-input" placeholder="Pin Location on Map" class="form-control" value="" readonly="readonly">
+                                <input type="text" name="location" id="search-input" placeholder="Pin Location on Map" class="form-control" value="" readonly="readonly" required>
                             </div>
                             <div class="col-md col-sm-12 form-group mb-3" data-for="latitude" hidden>
                                 <input type="text" name="latitude" id="latitude" value="">

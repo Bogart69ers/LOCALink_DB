@@ -107,6 +107,8 @@ namespace LocaLINK.Controllers
             user.status = (Int32)status.Active;
             _userManager.UpdateUser(user, ref ErrorMessage);
 
+            SendActivationNotificationEmail(user.email);
+
             return RedirectToAction("Login");
         }
         [AllowAnonymous]
@@ -117,6 +119,11 @@ namespace LocaLINK.Controllers
 
             ViewBag.Role = Utilities.ListRole;
 
+            return View();
+        }
+        [AllowAnonymous]
+        public ActionResult PageNotFound()
+        {
             return View();
         }
         [AllowAnonymous]
@@ -155,6 +162,19 @@ namespace LocaLINK.Controllers
             }
             TempData["username"] = ua.username;
             return RedirectToAction("Verify");
+        }
+        private void SendActivationNotificationEmail(string userEmail)
+        {
+            string emailBody = "Your account has been activated successfully.";
+            string errorMessage = "";
+
+            var mailManager = new MailManager();
+            bool emailSent = mailManager.SendEmail(userEmail, "Account Activation Notification", emailBody, ref errorMessage);
+
+            if (!emailSent)
+            {
+                // Handle email sending failure
+            }
         }
         [AllowAnonymous]
         public ActionResult Logout()
@@ -442,11 +462,12 @@ namespace LocaLINK.Controllers
         public ActionResult SignUpAdmin()
         {
             if (User.Identity.IsAuthenticated)
-                return RedirectToAction("Index");
 
             ViewBag.Role = Utilities.ListRole;
 
             return View();
+
+
         }
         [AllowAnonymous]
         [HttpPost]

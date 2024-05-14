@@ -313,6 +313,7 @@
     <Content Include="locaLINK.edmx.diagram">
       <DependentUpon>locaLINK.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\LOCALink.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
@@ -488,6 +489,7 @@
     <Content Include="Views\Home\Reports.cshtml" />
     <Content Include="Views\Home\SignUpAdmin.cshtml" />
     <Content Include="Views\Home\ForgotPass.cshtml" />
+    <Content Include="Views\Home\PageNotFound.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

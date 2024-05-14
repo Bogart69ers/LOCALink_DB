@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 section {
   background-color: #ffffff;
 }
@@ -770,7 +770,7 @@ body {
 }
 
 .alert {
-  color: #ffffff;
+  color: #eb0a0;
   border-radius: 0;
   border: 0;
   font-size: 1.1rem;

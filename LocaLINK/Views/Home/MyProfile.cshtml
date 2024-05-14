@@ -5,12 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@if (TempData["Message"] != null)
-{
-    <div class="alert alert-success" style="background-color: #d1e7dd; color: #155724; border-color: #c3e6cb;">
-        @TempData["Message"]
-    </div>
-}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,6 +33,9 @@
 {
     @Html.AntiForgeryToken()
     <body>
+        <br />
+        <br />
+        <br />
         <div class="limiter">
             <div class="container-login100">
                 <div class="wrap-login100">
@@ -47,16 +44,16 @@
                     </div>
                     <div class="login100-form">
                         <form class="login100-form validate-form">
-                            @if (!String.IsNullOrEmpty(TempData["Message"] as String))
-                            {
-                                <span class="alert alert-success">@TempData["Message"]</span>
-                                <br /><br /><br />
-                            }
 
                             <input type="hidden" name="ReturnUrl" value="@ViewBag.ReturnUrl" />
                             <span class="login100-form-title">
                                 My Profile Information
                             </span>
+                            @if (!String.IsNullOrEmpty(TempData["Message"] as String))
+                            {
+                                <span class="alert alert-success">@TempData["Message"]</span>
+                                <br /><br /><br />
+                            }
 
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             @Html.HiddenFor(model => model.id)
@@ -70,21 +67,24 @@
                             </div>
 
                             <div class="wrap-input100 validate-input">
-                                <input class="input100" type="text" name="lastname" placeholder="Last Name" required>
+                                @Html.EditorFor(model => model.lastname, new { htmlAttributes = new { @class = "input100", placeholder = "Last Name", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.lastname, "", new { @class = "text-danger" })
                                 <span class="focus-input100"></span>
                                 <span class="symbol-input100">
                                     <i class="fa fa-envelope-square" aria-hidden="true"></i>
                                 </span>
                             </div>
                             <div class="wrap-input100 validate-input">
-                                <input class="input100" type="text" name="firstname" placeholder="First Name" required>
+                                @Html.EditorFor(model => model.firstname, new { htmlAttributes = new { @class = "input100", placeholder = "First Name", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.firstname, "", new { @class = "text-danger" })
                                 <span class="focus-input100"></span>
                                 <span class="symbol-input100">
                                     <i class="fa fa-envelope-square" aria-hidden="true"></i>
                                 </span>
                             </div>
                             <div class="wrap-input100 validate-input">
-                                <input class="input100" type="text" name="phone_number" placeholder="Phone Number" required>
+                                @Html.EditorFor(model => model.phone_number, new { htmlAttributes = new { @class = "input100", placeholder = "Phone Number", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.phone_number, "", new { @class = "text-danger" })
                                 <span class="focus-input100"></span>
                                 <span class="symbol-input100">
                                     <i class="fa fa-envelope-square" aria-hidden="true"></i>
@@ -98,28 +98,32 @@
                                 </span>
                             </div>
                             <div class="wrap-input100 validate-input">
-                                <input class="input100" type="text" name="street" placeholder="Street" required>
+                                @Html.EditorFor(model => model.street, new { htmlAttributes = new { @class = "input100", placeholder = "Street", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.street, "", new { @class = "text-danger" })
                                 <span class="focus-input100"></span>
                                 <span class="symbol-input100">
                                     <i class="fa fa-envelope-square" aria-hidden="true"></i>
                                 </span>
                             </div>
                             <div class="wrap-input100 validate-input">
-                                <input class="input100" type="text" name="city" placeholder="City" required>
+                                @Html.EditorFor(model => model.city, new { htmlAttributes = new { @class = "input100", placeholder = "City", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
                                 <span class="focus-input100"></span>
                                 <span class="symbol-input100">
                                     <i class="fa fa-envelope-square" aria-hidden="true"></i>
                                 </span>
                             </div>
                             <div class="wrap-input100 validate-input">
-                                <input class="input100" type="text" name="state" placeholder="State" required>
+                                @Html.EditorFor(model => model.state, new { htmlAttributes = new { @class = "input100", placeholder = "State", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.state, "", new { @class = "text-danger" })
                                 <span class="focus-input100"></span>
                                 <span class="symbol-input100">
                                     <i class="fa fa-envelope-square" aria-hidden="true"></i>
                                 </span>
                             </div>
                             <div class="wrap-input100 validate-input">
-                                <input class="input100" type="text" name="zip_code" placeholder="Zip Code" required>
+                                @Html.EditorFor(model => model.zip_code, new { htmlAttributes = new { @class = "input100", placeholder = "Zip Code", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.zip_code, "", new { @class = "text-danger" })
                                 <span class="focus-input100"></span>
                                 <span class="symbol-input100">
                                     <i class="fa fa-lock" aria-hidden="true"></i>
@@ -132,7 +136,6 @@
                                     <i class="fa fa-lock" aria-hidden="true"></i>
                                 </span>
                             </div>
-                            <br />
                             <div class="container-login100-form-btn">
                                 <input type="submit" class="login100-form-btn" value="Save" />
                             </div>

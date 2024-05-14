@@ -101,7 +101,8 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdown-278">
                                         <a class="text-black dropdown-item display-4" href="/Home/MyProfile">Edit Profile</a>
-                                        <a class="text-black dropdown-item display-4" onclick="logoutConfirmation()">Sign Out<br></a>
+                                        <a class="text-black dropdown-item display-4" onclick="
+                                           ()">Sign Out<br></a>
                                     </div>
                                 </div>
                             </li>
@@ -133,12 +134,10 @@
         </div>
     }
     <div id="map"></div>
-    @using (Html.BeginForm())
-    {
         <main class="h-full overflow-y-auto" id="dashboard">
             <div class="container px-6 mx-auto grid">
                 <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                    Booking Progress
+                    Confirmed Bookings
                 </h2>
                 <table class="w-full whitespace-no-wrap">
                     <thead>
@@ -153,7 +152,7 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                        @foreach (var item in Model.Where(u => u.worker_id == ViewBag.Worker))
+                        @foreach (var item in Model.Where(u => u.worker_id == ViewBag.Worker && u.status == 1 ))
                         {
                             <tr class="text-gray-700 dark:text-gray-400">
                                 <td class="px-4 py-3 text-sm"> <strong>@Html.DisplayFor(modelItem => item.booking_id)</strong></td>
@@ -228,8 +227,7 @@
                                 </td>
                                 <td class="px-4 py-3">
                                     <div class="flex items-center space-x-4 text-sm">
-                                        <button type="button" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray cancel-button" onclick="inProgressBooking(@item.booking_id)" {{if item.status === 2}} disabled{{/if}}>In Progress</button>
-                                        <button type="button" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray cancel-button" onclick="DoneBooking(@item.booking_id)" {{if item.status === 2 || item.status === 4}} disabled{{/if}}>Done</button>
+                                        <button type="button" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray cancel-button" onclick="inProgressBooking(@item.booking_id)">In Progress</button>
                                    </div>
                                 </td>
                             </tr>
@@ -238,7 +236,308 @@
                 </table>
             </div>
         </main>
-                                        }
+    <main class="h-full overflow-y-auto" id="dashboard">
+        <div class="container px-6 mx-auto grid">
+            <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                In Progress Bookings
+            </h2>
+            <table class="w-full whitespace-no-wrap">
+                <thead>
+                    <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                        <th class="px-4 py-3">Book ID</th>
+                        <th class="px-4 py-3">Name</th>
+                        <th class="px-4 py-3">Service</th>
+                        <th class="px-4 py-3">Date</th>
+                        <th class="px-4 py-3">Contact</th>
+                        <th class="px-4 py-3">Status</th>
+                        <th class="px-4 py-3">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                    @foreach (var item in Model.Where(u => u.worker_id == ViewBag.Worker && u.status == 2))
+                    {
+                        <tr class="text-gray-700 dark:text-gray-400">
+                            <td class="px-4 py-3 text-sm"> <strong>@Html.DisplayFor(modelItem => item.booking_id)</strong></td>
+                            <td class="px-4 py-3 text-sm">@Html.DisplayFor(modelItem => item.name)</td>
+                            <td>
+                                @{
+                                    string statusText = "";
+                                    switch (item.service)
+                                    {
+                                        case 1:
+                                            statusText = "Cleaning Service";
+                                            break;
+                                        case 2:
+                                            statusText = "Plumbing";
+                                            break;
+                                        case 3:
+                                            statusText = "Electricians";
+                                            break;
+                                        case 4:
+                                            statusText = "Appliance Repair";
+                                            break;
+                                        case 5:
+                                            statusText = "HVAC Technicians";
+                                            break;
+                                        case 6:
+                                            statusText = "Computer Repair and IT Support";
+                                            break;
+                                        case 7:
+                                            statusText = "Tutoring";
+                                            break;
+                                        case 8:
+                                            statusText = "Home Security Systems";
+                                            break;
+                                        case 9:
+                                            statusText = "Handyman Services";
+                                            break;
+                                        case 10:
+                                            statusText = "Gardening";
+                                            break;
+                                        default:
+                                            statusText = "Unknown";
+                                            break;
+                                    }
+                                    <span class="px-4 py-3 text-sm">@statusText</span>
+                                }
+                            </td>
+                            <td class="px-4 py-3 text-sm">@Html.DisplayFor(modelItem => item.booking_date)</td>
+                            <td>@Html.DisplayFor(modelItem => item.contact)</td>
+                            <td>
+                                @{
+                                    switch (item.status)
+                                    {
+                                        case 0:
+                                            <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700">Pending</span>
+                                            break;
+                                        case 1:
+                                            <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">Confirmed</span>
+                                            break;
+                                        case 2:
+                                            <span class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600">In progress</span>
+                                            break;
+                                        case 3:
+                                            <span class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-full dark:text-gray-100 dark:bg-gray-700">Canceled</span>
+                                            break;
+                                        case 4:
+                                            <span class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-full dark:text-gray-100 dark:bg-gray-700">Done</span>
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                }
+                            </td>
+                            <td class="px-4 py-3">
+                                <div class="flex items-center space-x-4 text-sm">
+                                    <button type="button" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray cancel-button" onclick="DoneBooking(@item.booking_id)">Done</button>
+                                </div>
+                            </td>
+                        </tr>
+                                    }
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <main class="h-full overflow-y-auto" id="dashboard">
+        <div class="container px-6 mx-auto grid">
+            <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                Cancelled Bookings
+            </h2>
+            <table class="w-full whitespace-no-wrap">
+                <thead>
+                    <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                        <th class="px-4 py-3">Book ID</th>
+                        <th class="px-4 py-3">Name</th>
+                        <th class="px-4 py-3">Service</th>
+                        <th class="px-4 py-3">Date</th>
+                        <th class="px-4 py-3">Contact</th>
+                        <th class="px-4 py-3">Status</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                    @foreach (var item in Model.Where(u => u.worker_id == ViewBag.Worker && u.status == 3))
+                    {
+                        <tr class="text-gray-700 dark:text-gray-400">
+                            <td class="px-4 py-3 text-sm"> <strong>@Html.DisplayFor(modelItem => item.booking_id)</strong></td>
+                            <td class="px-4 py-3 text-sm">@Html.DisplayFor(modelItem => item.name)</td>
+                            <td>
+                                @{
+                                    string statusText = "";
+                                    switch (item.service)
+                                    {
+                                        case 1:
+                                            statusText = "Cleaning Service";
+                                            break;
+                                        case 2:
+                                            statusText = "Plumbing";
+                                            break;
+                                        case 3:
+                                            statusText = "Electricians";
+                                            break;
+                                        case 4:
+                                            statusText = "Appliance Repair";
+                                            break;
+                                        case 5:
+                                            statusText = "HVAC Technicians";
+                                            break;
+                                        case 6:
+                                            statusText = "Computer Repair and IT Support";
+                                            break;
+                                        case 7:
+                                            statusText = "Tutoring";
+                                            break;
+                                        case 8:
+                                            statusText = "Home Security Systems";
+                                            break;
+                                        case 9:
+                                            statusText = "Handyman Services";
+                                            break;
+                                        case 10:
+                                            statusText = "Gardening";
+                                            break;
+                                        default:
+                                            statusText = "Unknown";
+                                            break;
+                                    }
+                                    <span class="px-4 py-3 text-sm">@statusText</span>
+                                }
+                            </td>
+                            <td class="px-4 py-3 text-sm">@Html.DisplayFor(modelItem => item.booking_date)</td>
+                            <td>@Html.DisplayFor(modelItem => item.contact)</td>
+                            <td>
+                                @{
+                                    switch (item.status)
+                                    {
+                                        case 0:
+                                            <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700">Pending</span>
+                                            break;
+                                        case 1:
+                                            <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">Confirmed</span>
+                                            break;
+                                        case 2:
+                                            <span class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600">In progress</span>
+                                            break;
+                                        case 3:
+                                            <span class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-full dark:text-gray-100 dark:bg-gray-700">Canceled</span>
+                                            break;
+                                        case 4:
+                                            <span class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-full dark:text-gray-100 dark:bg-gray-700">Done</span>
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                }
+                            </td>
+                        </tr>
+                                    }
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <main class="h-full overflow-y-auto" id="dashboard">
+        <div class="container px-6 mx-auto grid">
+            <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                Booking History
+            </h2>
+            <table class="w-full whitespace-no-wrap">
+                <thead>
+                    <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                        <th class="px-4 py-3">Book ID</th>
+                        <th class="px-4 py-3">Name</th>
+                        <th class="px-4 py-3">Service</th>
+                        <th class="px-4 py-3">Date</th>
+                        <th class="px-4 py-3">Contact</th>
+                        <th class="px-4 py-3">Status</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                    @foreach (var item in Model.Where(u => u.worker_id == ViewBag.Worker && u.status == 4))
+                    {
+                        <tr class="text-gray-700 dark:text-gray-400">
+                            <td class="px-4 py-3 text-sm"> <strong>@Html.DisplayFor(modelItem => item.booking_id)</strong></td>
+                            <td class="px-4 py-3 text-sm">@Html.DisplayFor(modelItem => item.name)</td>
+                            <td>
+                                @{
+                                    string statusText = "";
+                                    switch (item.service)
+                                    {
+                                        case 1:
+                                            statusText = "Cleaning Service";
+                                            break;
+                                        case 2:
+                                            statusText = "Plumbing";
+                                            break;
+                                        case 3:
+                                            statusText = "Electricians";
+                                            break;
+                                        case 4:
+                                            statusText = "Appliance Repair";
+                                            break;
+                                        case 5:
+                                            statusText = "HVAC Technicians";
+                                            break;
+                                        case 6:
+                                            statusText = "Computer Repair and IT Support";
+                                            break;
+                                        case 7:
+                                            statusText = "Tutoring";
+                                            break;
+                                        case 8:
+                                            statusText = "Home Security Systems";
+                                            break;
+                                        case 9:
+                                            statusText = "Handyman Services";
+                                            break;
+                                        case 10:
+                                            statusText = "Gardening";
+                                            break;
+                                        default:
+                                            statusText = "Unknown";
+                                            break;
+                                    }
+                                    <span class="px-4 py-3 text-sm">@statusText</span>
+                                }
+                            </td>
+                            <td class="px-4 py-3 text-sm">@Html.DisplayFor(modelItem => item.booking_date)</td>
+                            <td>@Html.DisplayFor(modelItem => item.contact)</td>
+                            <td>
+                                @{
+                                    switch (item.status)
+                                    {
+                                        case 0:
+                                            <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700">Pending</span>
+                                            break;
+                                        case 1:
+                                            <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">Confirmed</span>
+                                            break;
+                                        case 2:
+                                            <span class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600">In progress</span>
+                                            break;
+                                        case 3:
+                                            <span class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-full dark:text-gray-100 dark:bg-gray-700">Canceled</span>
+                                            break;
+                                        case 4:
+                                            <span class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-full dark:text-gray-100 dark:bg-gray-700">Done</span>
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                }
+                            </td>
+                           
+                        </tr>
+                                    }
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+
+
+
+
+
+
     <br />
     <br />
     <br />

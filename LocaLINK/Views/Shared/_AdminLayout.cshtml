@@ -75,8 +75,7 @@
                         </a>
                     </li>
                     <li class="relative px-6 py-3">
-                        <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" onclick="logoutConfirmation()"
-                           href="/Home/Logout">
+                        <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" onclick="logoutConfirmation()">
                             <svg class="w-5 h-5"
                                  aria-hidden="true"
                                  fill="none"
@@ -116,7 +115,25 @@
     }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function logoutConfirmation() {
+            Swal.fire({
+                title: 'Logout Confirmation',
+                text: "Are you sure you want to logout?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, logout'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Proceed with logout
+                    window.location.href = "/Home/Logout"; // Redirect to logout action
+                }
+            });
+        }
+    </script>
     
 </body>
 </html>
