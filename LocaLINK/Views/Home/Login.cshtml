@@ -16,7 +16,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="login/favicon.ico" />
+    <link rel="icon" type="image/png" href="~/assets/login/favicon.ico" />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="assets/login/bootstrap.min.css">
     <!--===============================================================================================-->
@@ -33,7 +33,7 @@
     <!--===============================================================================================-->
 </head>
 @using (Html.BeginForm())
-{ 
+{
 <body>
 
     <div class="limiter">
@@ -43,12 +43,15 @@
                     <img src="/assets/login/img-01.png" alt="IMG">
                 </div>
                 <div class="login100-form">
+                    
                     <form class="login100-form validate-form">
-
+                        
                         <input type="hidden" name="ReturnUrl" value="@ViewBag.ReturnUrl" />
+
                         <span class="login100-form-title">
                             Member Login
                         </span>
+                        
                         <div class="wrap-input100 validate-input" data-validate="Username is required">
                             <input class="input100" type="text" name="username" placeholder="Username" required>
                             <span class="focus-input100"></span>
@@ -63,6 +66,10 @@
                                 <i class="fa fa-lock" aria-hidden="true"></i>
                             </span>
                         </div>
+                        @if (!string.IsNullOrEmpty(ViewBag.Error))
+                        {
+                            <i class="fa fa-exclamation-circle"></i> @Html.Raw(ViewBag.Error)
+                        }
                         <div class="container-login100-form-btn">
                             <input type="submit" class="login100-form-btn" value="Login" />
                         </div>

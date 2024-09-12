@@ -1,0 +1,148 @@
+﻿@model LocaLINK.User_Account
+@{
+    ViewBag.Title = "ForgotPass";
+    ViewBag.HeaderTitle = "ForgotPass";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.AntiForgeryToken()
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        /*
+        .input-group {
+          position: relative;
+          width: 100px; /* Adjust width as needed
+        } */
+
+        /* .input-group-append {
+          right: 50px;
+          top: 0;
+        } */
+    </style>
+    <title>Login V1</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="login/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="assets/login/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/assets/login/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/assets/login/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/assets/login/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/assets/login/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/assets/login/util.css">
+    <link rel="stylesheet" type="text/css" href="/assets/login/main.css">
+    <!--===============================================================================================-->
+
+    <script>
+        $(document).ready(function () {
+            $('#forgotPassForm').submit(function (event) {
+                event.preventDefault();
+
+                var formData = $(this).serialize();
+
+                $.ajax({
+                    url: '/Home/ForgotPass',
+                    type: 'POST',
+                    data: formData,
+                    success: function (response) {
+                        alert('Action performed successfully!');
+                        // Handle success (e.g., display a success message or update UI)
+                    },
+                    error: function (xhr, status, error) {
+                        alert('An error occurred: ' + error);
+                        // Handle error (e.g., display an error message or show validation errors)
+                    }
+                });
+            });
+        });
+
+
+    </script>
+</head>
+@using (Html.BeginForm())
+{
+    <body>
+        <div class="limiter">
+            <div class="container-login100">
+                <div class="wrap-login100">
+                    <div class="login100-pic js-tilt" data-tilt>
+                        <img src="/assets/login/img-01.png" alt="IMG">
+                    </div>
+                    <div class="login100-form">
+                        <form id="forgotPassForm" class="login100-form validate-form">
+                            <style>
+                                .alert.alert-danger {
+                                    border-radius: 50%;
+                                }
+                            </style>
+                            @if (!string.IsNullOrEmpty(ViewBag.Error))
+                            {
+                                <div class="alert alert-danger" role="alert">
+                                    <i class="fa fa-exclamation-circle"></i> @Html.Raw(ViewBag.Error)
+                                </div>
+
+                            }
+                            <input type="hidden" name="ReturnUrl" value="@ViewBag.ReturnUrl" />
+                            <span class="login100-form-title">
+                                Change Password
+                            </span>
+                            <div class="wrap-input100 validate-input" data-validate="Email is required">
+                                <input class="input100" type="text" id="eumail" name="email" placeholder="Email" required>
+                                <span class="focus-input100"></span>
+                                <span class="symbol-input100">
+                                    <i class="fa fa-envelope-square" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <!-- Email Code -->
+                            <div class="wrap-input100 validate-input">
+                                <input class="input100" type="text" name="code" placeholder="Code">
+                                <span class="focus-input100"></span>
+                                <span class="symbol-input100">
+                                    <i class="fa fa-envelope-square" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <input type="submit" name="cdbutton" class="login100-form-btn" value="Send Code">
+                            <br />
+                            <!-- Enter New Password -->
+                            <div class="wrap-input100 validate-input" data-validate="Password is required">
+                                <input class="input100" type="password" id="newPassword" placeholder="Enter New Password">
+                                <span class="focus-input100"></span>
+                                <span class="symbol-input100">
+                                    <i class="fa fa-lock" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <!---------------------------------------------------->
+                            <input type="submit" name="confirmButton" class="login100-form-btn" value="Confirm" />
+                            <!-- <div class="container-login100-form-btn">
+                                <input type="submit" class="login100-form-btn" value="Confirm" />
+                            </div> -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--===============================================================================================-->
+        <script src="/assets/login/jquery-3.2.1.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="/assets/login/popper.js"></script>
+        <script src="/assets/login/bootstrap.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="/assets/login/select2.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="/assets/login/tilt.jquery.min.js"></script>
+        <script>
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+        </script>
+    </body>
+}
+</html>

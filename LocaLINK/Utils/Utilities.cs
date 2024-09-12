@@ -32,13 +32,13 @@ namespace LocaLINK.Utils
         HasStock
     }
 
-    public enum OrderStatus
+    public enum BookStatus
     {
-        Open,
         Pending,
-        Paid,
-        Delivered,
-        Close
+        Confirmed,
+        InProgress,
+        Canceled,
+        Done
     }
 
     public class Constant
@@ -49,10 +49,6 @@ namespace LocaLINK.Utils
 
         public const int ERROR = 1;
         public const int SUCCESS = 0;
-
-        public const string X = "X";
-        public const string MINUS = "−";
-        public const string PLUS = "+";
     }
 
     public class Utilities

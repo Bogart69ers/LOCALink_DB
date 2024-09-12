@@ -1,0 +1,297 @@
+﻿@model IEnumerable<LocaLINK.Booking>
+
+@{
+    ViewBag.Title = "Progress";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Booking Progress</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/tailwind.output.css" />
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="/assets/js/init-alpine.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" defer></script>
+    <script src="/assets/js/charts-lines.js" defer></script>
+    <script src="/assets/js/charts-pie.js" defer></script>
+
+</head>
+<body>
+    <section data-bs-version="5.1" class="menu menu2 cid-uadY7arbeN" once="menu" id="menu-5-uadY7arbeN">
+
+        <nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+            <div class="container">
+                <div class="navbar-brand">
+                    <span class="navbar-caption-wrap"><a class="navbar-caption text-black display-4">LOCALink</a></span>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("User"))
+                    {
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+                                <li class="nav-item">
+                                    <a class="nav-link link text-black display-4" href="/Home/Booking">Home</a>                                
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link link text-black display-4" href="/Home/Progress">Booking & Progress </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <div class="navbar-buttons mbr-section-btn">
+                                    <button class="btn btn-primary display-4" type="button" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                                        </svg>
+                                        <span style="margin-left: 10px;">@User.Identity.Name</span>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdown-278">
+                                        <a class="text-black dropdown-item display-4" href="/Home/MyProfile">Edit Profile</a>
+                                        <button class="text-black dropdown-item display-4" onclick="logoutConfirmation()">Sign Out<br></button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+                                <li class="nav-item">
+                                    <a class="nav-link link text-black display-4" href="/Home/Booking">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link link text-black display-4" href="/Home/Progress">Booking & Progress </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <div class="navbar-buttons mbr-section-btn">
+                                    <button class="btn btn-primary display-4" type="button" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                                        </svg>
+                                        <span style="margin-left: 10px;">@User.Identity.Name</span>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdown-278">
+                                        <a class="text-black dropdown-item display-4" href="/Home/MyProfile">Edit Profile</a>
+                                        <button class="text-black dropdown-item display-4" onclick="logoutConfirmation()">Sign Out<br></button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    }
+                }
+
+            </div>
+        </nav>
+    </section>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+    <div class="alert alert-success" role="alert">
+        @ViewBag.SuccessMessage
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.ErrorMessage
+    </div>
+}
+<div id="map"></div>
+@using (Html.BeginForm())
+{
+    <main class="h-full overflow-y-auto" id="dashboard">
+        <div class="container px-6 mx-auto grid">
+            <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                Booking Progress
+            </h2>
+            <table class="w-full whitespace-no-wrap">
+                <thead>
+                    <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                        <th class="px-4 py-3">Book ID</th>
+                        <th class="px-4 py-3">Name</th>
+                        <th class="px-4 py-3">Service</th>
+                        <th class="px-4 py-3">Date</th>
+                        <th class="px-4 py-3">Contact</th>
+                        <th class="px-4 py-3">Status</th>
+                        <th class="px-4 py-3">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                    @foreach (var item in Model)
+                    {
+                        <tr class="text-gray-700 dark:text-gray-400">
+                            <td class="px-4 py-3 text-sm"> <strong>@Html.DisplayFor(modelItem => item.booking_id)</strong></td>
+                            <td class="px-4 py-3 text-sm">@Html.DisplayFor(modelItem => item.name)</td>
+                            <td>
+                                @{
+                                    string statusText = "";
+                                    switch (item.service)
+                                    {
+                                        case 1:
+                                            statusText = "Cleaning Service";
+                                            break;
+                                        case 2:
+                                            statusText = "Plumbing";
+                                            break;
+                                        case 3:
+                                            statusText = "Electricians";
+                                            break;
+                                        case 4:
+                                            statusText = "Appliance Repair";
+                                            break;
+                                        case 5:
+                                            statusText = "HVAC Technicians";
+                                            break;
+                                        case 6:
+                                            statusText = "Computer Repair and IT Support";
+                                            break;
+                                        case 7:
+                                            statusText = "Tutoring";
+                                            break;
+                                        case 8:
+                                            statusText = "Home Security Systems";
+                                            break;
+                                        case 9:
+                                            statusText = "Handyman Services";
+                                            break;
+                                        case 10:
+                                            statusText = "Gardening";
+                                            break;
+                                        default:
+                                            statusText = "Unknown";
+                                            break;
+                                    }
+                                    <span class="px-4 py-3 text-sm">@statusText</span>
+                                }
+                            </td>
+                            <td class="px-4 py-3 text-sm">@Html.DisplayFor(modelItem => item.booking_date)</td>
+                            <td>@Html.DisplayFor(modelItem => item.contact)</td>
+                            <td>
+                                @{
+                                    switch (item.status)
+                                    {
+                                        case 0:
+                                            <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700">Pending</span>
+                                            break;
+                                        case 1:
+                                            <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">Confirmed</span>
+                                            break;
+                                        case 2:
+                                            <span class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600">In progress</span>
+                                            break;
+                                        case 3:
+                                            <span class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-full dark:text-gray-100 dark:bg-gray-700">Canceled</span>
+                                            break;
+                                        case 4:
+                                            <span class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-full dark:text-gray-100 dark:bg-gray-700">Done</span>
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                }
+                            </td>
+                            <td class="px-4 py-3">
+                                <div class="flex items-center space-x-4 text-sm">
+                                    <button type="button" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray cancel-button" onclick="cancelBooking(@item.booking_id)">Cancel</button>
+                                </div>
+                            </td>
+                        </tr>
+                  }
+                 </tbody>
+              </table>
+            </div>
+        </main>
+  }
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+    function cancelBooking(booking_id) {
+        // Display confirmation dialog
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You will not be able to revert this!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, cancel it!',
+            cancelButtonText: 'No, keep it'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // User confirmed, proceed with cancellation
+                fetch('/Home/cancelBooking', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ booking_id: booking_id }),
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Failed to cancel booking!');
+                    }
+                })
+                .then(data => {
+                    if (data.success) {
+                        // Update UI or display a success message
+                        Swal.fire('Cancelled!', 'The booking has been cancelled.', 'success');
+                        // Optionally, reload the page after a delay
+                        setTimeout(() => {
+                            location.reload();
+                        }, 2000);
+                    } else {
+                        Swal.fire('Error!', 'Failed to cancel booking.', 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                    Swal.fire('Error!', 'Failed to cancel booking.', 'error');
+                });
+            }
+        });
+    }
+    </script>
+
+
+
+</body>
+</html>

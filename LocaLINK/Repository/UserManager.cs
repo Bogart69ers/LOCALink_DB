@@ -17,11 +17,43 @@ namespace LocaLINK.Repository
             _userAcc = new BaseRepository<User_Account>();
             _userInf = new BaseRepository<User_Info>();
         }
-
-        #region Get User By ---
+        
         public User_Account GetUserById(int Id)
         {
             return _userAcc.Get(Id);
+        }
+        public ErrorCode UpdatePassword(User_Account user, string newPassword)
+        {
+            try
+            {
+                // Retrieve the user from the database
+                var existingUser = _userAcc.Get(user.id);
+                if (existingUser == null)
+                {
+                    return ErrorCode.Error;
+                }
+
+                // Update the password
+                existingUser.password = newPassword;
+
+                // Save changes to the database
+                var errMsg = "";
+                var result = _userAcc.Update(existingUser.id, existingUser, out errMsg);
+                if (result != ErrorCode.Success)
+                {
+                    return ErrorCode.Error;
+                }
+
+                return ErrorCode.Success;
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions
+                // Log the exception for debugging purposes
+                // You can customize this based on your logging strategy
+                Console.WriteLine("Error updating password: " + ex.Message);
+                return ErrorCode.Error;
+            }
         }
         public User_Account GetUserByUserId(String userId)
         {
@@ -35,7 +67,11 @@ namespace LocaLINK.Repository
         {
             return _userAcc._table.Where(m => m.email == email).FirstOrDefault();
         }
-        #endregion
+        public User_Account RetrieveData(int id, ref String err)
+        {
+            var user = GetUserById(id);
+            return GetUserByUserId(user.userId);
+        }
         public ErrorCode Login(String username, String password, ref String errMsg)
         {
             var userSignIn = GetUserByUsername(username);
@@ -123,13 +159,17 @@ namespace LocaLINK.Repository
             var userEmail = User.email;
             if (userEmail != null)
             {
-                UserInfo.email = userEmail;
+                UserInfo.email = userEmail; 
             }
 
             _userInf.Create(UserInfo, out err);
 
             return GetUserInfoByUserId(User.userId);
 
+        }
+        public List<User_Account> GetAllBUserInfo()
+        {
+            return _userAcc.GetAll().ToList();
         }
     }
 }

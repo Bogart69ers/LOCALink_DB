@@ -79,11 +79,19 @@
       <HintPath>..\packages\Microsoft.ApplicationInsights.2.0.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.4\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -186,11 +194,14 @@
     <Content Include="assets\bootstrap\css\bootstrap-reboot.min.css" />
     <Content Include="assets\bootstrap\css\bootstrap.min.css" />
     <Content Include="assets\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="assets\css\tailwind.css" />
+    <Content Include="assets\css\tailwind.output.css" />
     <Content Include="assets\dropdown\css\style.css" />
     <Content Include="assets\dropdown\js\navbar-dropdown.js" />
     <Content Include="assets\formoid\formoid.min.js" />
     <Content Include="assets\imageloaded\imagesloaded.pkgd.min.js" />
     <Content Include="assets\images\327902782_5881112508670425_939493048084412230_n.jpg" />
+    <Content Include="assets\images\423422484_742093807859588_180377772690653095_n %281%29.png" />
     <Content Include="assets\images\427711099_1287159432686634_3947921874142247345_n.jpg" />
     <Content Include="assets\images\430007298_1800677873731182_1481824453091159984_n.png" />
     <Content Include="assets\images\431791036_1505998206648976_5915917117067055049_n.jpg" />
@@ -220,6 +231,22 @@
     <Content Include="assets\images\photo-1651044450619-5ce74d316987.jpeg" />
     <Content Include="assets\images\photo-1681075401974-907cc62a4373.jpeg" />
     <Content Include="assets\images\photo-1694026307715-0d3709e69adf.jpeg" />
+    <Content Include="assets\img\create-account-office-dark.jpeg" />
+    <Content Include="assets\img\create-account-office.jpeg" />
+    <Content Include="assets\img\dashboard.png" />
+    <Content Include="assets\img\forgot-password-office-dark.jpeg" />
+    <Content Include="assets\img\forgot-password-office.jpeg" />
+    <Content Include="assets\img\github.svg" />
+    <Content Include="assets\img\login-office-dark.jpeg" />
+    <Content Include="assets\img\login-office.jpeg" />
+    <Content Include="assets\img\twitter.svg" />
+    <Content Include="assets\js\charts-bars.js" />
+    <Content Include="assets\js\charts-lines.js" />
+    <Content Include="assets\js\charts-pie.js" />
+    <Content Include="assets\js\focus-trap.js" />
+    <Content Include="assets\js\init-alpine.js" />
+    <Content Include="assets\js\postcss.config.js" />
+    <Content Include="assets\js\tailwind.config.js" />
     <Content Include="assets\login\animate.css" />
     <Content Include="assets\login\bootstrap-grid.css" />
     <Content Include="assets\login\bootstrap-grid.min.css" />
@@ -259,15 +286,15 @@
     <Content Include="assets\web\assets\mobirise-icons2\mobirise2.svg" />
     <Content Include="assets\ytplayer\index.js" />
     <Content Include="Global.asax" />
-    <Content Include="LOCALink.Context.tt">
+    <Content Include="locaLINK.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LOCALink.edmx</DependentUpon>
-      <LastGenOutput>LOCALink.Context.cs</LastGenOutput>
+      <DependentUpon>locaLINK.edmx</DependentUpon>
+      <LastGenOutput>locaLINK.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="LOCALink.tt">
+    <Content Include="locaLINK.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LOCALink.edmx</DependentUpon>
-      <LastGenOutput>LOCALink.cs</LastGenOutput>
+      <DependentUpon>locaLINK.edmx</DependentUpon>
+      <LastGenOutput>locaLINK.cs</LastGenOutput>
     </Content>
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
@@ -279,13 +306,14 @@
     <Content Include="assets\booking\mobirise2.eot" />
     <Content Include="assets\booking\mobirise2.ttf" />
     <Content Include="assets\booking\mobirise2.woff" />
-    <EntityDeploy Include="LOCALink.edmx">
+    <EntityDeploy Include="locaLINK.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LOCALink.Designer.cs</LastGenOutput>
+      <LastGenOutput>locaLINK.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="LOCALink.edmx.diagram">
-      <DependentUpon>LOCALink.edmx</DependentUpon>
+    <Content Include="locaLINK.edmx.diagram">
+      <DependentUpon>locaLINK.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\LOCALink.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
@@ -294,15 +322,13 @@
     <Content Include="scripts\jquery.validate.min.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="scripts\vue.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Booking.cs">
-      <DependentUpon>LOCALink.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BookingDetails.cs">
-      <DependentUpon>LOCALink.tt</DependentUpon>
+      <DependentUpon>locaLINK.tt</DependentUpon>
     </Compile>
     <Compile Include="Contracts\IBaseController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -310,50 +336,40 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="LOCALink.Context.cs">
+    <Compile Include="locaLINK.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LOCALink.Context.tt</DependentUpon>
+      <DependentUpon>locaLINK.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="LOCALink.cs">
+    <Compile Include="locaLINK.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LOCALink.tt</DependentUpon>
+      <DependentUpon>locaLINK.tt</DependentUpon>
     </Compile>
-    <Compile Include="LOCALink.Designer.cs">
+    <Compile Include="locaLINK.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LOCALink.edmx</DependentUpon>
+      <DependentUpon>locaLINK.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\UserLogged.cs" />
+    <Compile Include="Repository\BookingManager.cs" />
     <Compile Include="Repository\MailManager.cs" />
+    <Compile Include="Repository\ServiceManager.cs" />
     <Compile Include="Services.cs">
-      <DependentUpon>LOCALink.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Service_Provider.cs">
-      <DependentUpon>LOCALink.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>LOCALink.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagrams_Result.cs">
-      <DependentUpon>LOCALink.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Status.cs">
-      <DependentUpon>LOCALink.tt</DependentUpon>
+      <DependentUpon>locaLINK.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
-      <DependentUpon>LOCALink.tt</DependentUpon>
+      <DependentUpon>locaLINK.tt</DependentUpon>
     </Compile>
     <Compile Include="User_Account.cs">
-      <DependentUpon>LOCALink.tt</DependentUpon>
+      <DependentUpon>locaLINK.tt</DependentUpon>
     </Compile>
     <Compile Include="User_Info.cs">
-      <DependentUpon>LOCALink.tt</DependentUpon>
+      <DependentUpon>locaLINK.tt</DependentUpon>
     </Compile>
     <Compile Include="User_Role.cs">
-      <DependentUpon>LOCALink.tt</DependentUpon>
+      <DependentUpon>locaLINK.tt</DependentUpon>
     </Compile>
     <Compile Include="Utils\MyRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -361,7 +377,7 @@
     <Compile Include="Repository\UserManager.cs" />
     <Compile Include="Utils\Utilities.cs" />
     <Compile Include="vw_accRole.cs">
-      <DependentUpon>LOCALink.tt</DependentUpon>
+      <DependentUpon>locaLINK.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -370,7 +386,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="assets\socicon\fonts\socicon.eot" />
@@ -459,8 +474,22 @@
     <Content Include="Views\Home\SignUp.cshtml" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Verify.cshtml" />
-    <Content Include="Views\Home\Booking.cshtml" />
     <Content Include="Views\Home\MyProfile.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Worker.cshtml" />
+    <Content Include="Views\Home\Booking.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
+    <Content Include="Views\Home\UserAccounts.cshtml" />
+    <Content Include="Views\Home\Edit.cshtml" />
+    <Content Include="Views\Home\Delete.cshtml" />
+    <Content Include="Views\Home\Progress.cshtml" />
+    <Content Include="Views\Home\ProgressWorker.cshtml" />
+    <Content Include="Views\Shared\_UserLayout.cshtml" />
+    <Content Include="Views\Home\Reports.cshtml" />
+    <Content Include="Views\Home\SignUpAdmin.cshtml" />
+    <Content Include="Views\Home\ForgotPass.cshtml" />
+    <Content Include="Views\Home\PageNotFound.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

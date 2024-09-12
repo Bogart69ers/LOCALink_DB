@@ -17,14 +17,13 @@ namespace LocaLINK
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Services()
         {
-            this.Service_Provider = new HashSet<Service_Provider>();
+            this.Booking = new HashSet<Booking>();
         }
     
         public int id { get; set; }
         public string serviceName { get; set; }
-        public string serviceId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Service_Provider> Service_Provider { get; set; }
+        public virtual ICollection<Booking> Booking { get; set; }
     }
 }
